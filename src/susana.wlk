@@ -1,14 +1,27 @@
 import wollok.game.*
 
 object susana {
-	var property checkpoint = 0
 	var property position = game.at(0,0)
 	const inventario = []
+	const elemEntregados = []
 
 	method inventario() = inventario
+	method elemEntregados() = elemEntregados
 
-	method agregarAInventario(elemento) {
-		inventario.add(elemento)
+	method tiene(elemento) = self.inventario().contains(elemento)
+	method tuvo(elemento) = self.elemEntregados().contains(elemento)
+
+	method agregarA(lugar, elemento) {
+		lugar.add(elemento)
+	}
+
+	method quitarDe(lugar, elemento) {
+		lugar.remove(elemento)
+	}
+
+	method entregar(elemento) {
+		self.quitarDe(inventario, elemento)
+		self.agregarA(elemEntregados, elemento)
 	}
 	
 	method image() = "marley.png"
@@ -28,7 +41,4 @@ object susana {
 	method moverseIzquierda() {
 		self.position(position.left(1))
 	}
-
-	
-
 }

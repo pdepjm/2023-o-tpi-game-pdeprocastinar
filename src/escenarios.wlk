@@ -15,6 +15,10 @@ object vecindad {
 	}
 }
 
+class Casa {
+    
+}
+
 object casaMessi {
     var property position = game.at(4,4)
 
@@ -23,7 +27,7 @@ object casaMessi {
     method generar() {
         game.ground("madera.png")
         game.addVisual(messi)
-        if (susana.checkpoint() == 0) game.addVisual(botines)
+        if (!susana.tiene(botines) && !susana.tuvo(botines)) game.addVisual(botines)
         game.addVisualIn(puerta, game.at(10,5))
     }
 
@@ -31,7 +35,7 @@ object casaMessi {
         nivel.cargarMapa(self)
     }
 
-}
+} 
 
 object casaMoria {
     var property position = game.at(12,8)
