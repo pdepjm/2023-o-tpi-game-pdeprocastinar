@@ -4,12 +4,10 @@ import configuraciones.*
 import escenarios.*
 
 
+class Elemento {
+    var property position = game.at(0,0)
 
-
-object botines {
-    var property position = game.at(7,4)
-
-    method image() = "botin.png"
+    method image() = ""
 
     method interactuar() {
         susana.agregarA(susana.inventario(), self)
@@ -17,18 +15,41 @@ object botines {
     }
 }
 
-object copa {
+
+object botines inherits Elemento {
+    override method position() = game.at(7,4)
+
+    override method image() = "botin.png"
+
+}
+
+object copa inherits Elemento {
 	
 }
 
-object balonDeOro {
+object balonDeOro inherits Elemento {
 	
 }
 
-object puerta {
-	method image() = "puerta.png"
+object collar inherits Elemento {
 	
-	method interactuar() {
+}
+
+object llaveEscudero inherits Elemento {
+	
+}
+
+object puerta inherits Elemento {
+	override method image() = "puerta.png"
+	
+	override method interactuar() {
 		nivel.cargarMapa(vecindad)
 	}
+}
+
+object martinFierro inherits Elemento {
+    override method position() = game.at(7,4)
+
+    override method image() = "martinFierro.png"
+	
 }
