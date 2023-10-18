@@ -3,8 +3,11 @@ import susana.*
 import personajes.*
 import configuraciones.*
 import elementos.*
+import zona.*
 
 object vecindad {
+//	method zonas () = [new Zona(xIni = 0, xFin = 5, yIni = 0, yFin = 5), new Zona(xIni = 4, xFin = 10, yIni = 6, yFin = 7), new Zona(xIni = 10, xFin = 12, yIni = 3, yFin = 5)]
+	method zonas () = [new Zona(xIni = 0, xFin = 29, yIni = 0, yFin = 19)]
 	method generar() {
         game.ground("pastito.png")
         game.addVisual(casaMessi)
@@ -17,6 +20,7 @@ object vecindad {
 }
 
 class Casa {
+	method zonas () = [new Zona(xIni = 0, xFin = 5, yIni = 0, yFin = 5), new Zona(xIni = 4, xFin = 10, yIni = 6, yFin = 7)]
     method position() = game.at(0,0)
     method image() = ""
     method propietario() = susana

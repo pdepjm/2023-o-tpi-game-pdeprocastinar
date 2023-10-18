@@ -8,7 +8,6 @@ program juego {
 	game.width(30)
 	game.height(20)
 
-	nivel.configurarTeclas()
 	nivel.cargarMapa(vecindad)
 
 	game.start()

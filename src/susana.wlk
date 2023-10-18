@@ -26,19 +26,42 @@ object susana {
 	
 	method image() = "marley.png"
 	
-	method moverseArriba() {
-		self.position(position.up(1))
+	method quedaEnZona (zona, x, y) {
+		return x >= zona.xIni() &&  x <= zona.xFin() && y >= zona.yIni() && y <= zona.yFin()
 	}
 	
-	method moverseAbajo() {
-		self.position(position.down(1))
+	method moverseArriba(zonas) {
+		var puedeMoverse = false
+		
+		zonas.forEach({ zona => if (self.quedaEnZona(zona, position.x(), position.y() + 1)) { puedeMoverse = true } })
+
+		if(puedeMoverse) self.position(position.up(1))
 	}
 	
-	method moverseDerecha() {
-		self.position(position.right(1))
+	method moverseAbajo(zonas) {
+		var puedeMoverse = false
+		
+		zonas.forEach({ zona => if (self.quedaEnZona(zona, position.x(), position.y() - 1)) { puedeMoverse = true } })
+
+		if(puedeMoverse) self.position(position.down(1))
+		
 	}
 	
-	method moverseIzquierda() {
-		self.position(position.left(1))
+	method moverseDerecha(zonas) {
+		
+		var puedeMoverse = false
+		
+		zonas.forEach({ zona => if (self.quedaEnZona(zona, position.x() + 1, position.y())) { puedeMoverse = true } })
+
+		if(puedeMoverse) self.position(position.right(1))
+	}
+	
+	method moverseIzquierda(zonas) {
+		
+		var puedeMoverse = false
+		
+		zonas.forEach({ zona => if (self.quedaEnZona(zona, position.x() - 1, position.y())) { puedeMoverse = true } })
+
+		if(puedeMoverse) self.position(position.left(1))
 	}
 }

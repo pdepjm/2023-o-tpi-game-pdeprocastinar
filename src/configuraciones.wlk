@@ -3,16 +3,16 @@ import susana.*
 
 object nivel {
 
-    method configurarTeclas() {
-        keyboard.a().onPressDo( {susana.moverseIzquierda()} )
-        keyboard.d().onPressDo( {susana.moverseDerecha()} )
-        keyboard.w().onPressDo( {susana.moverseArriba()} )
-        keyboard.s().onPressDo( {susana.moverseAbajo()} )
+    method configurarTeclas(zonas) {
+        keyboard.a().onPressDo( {susana.moverseIzquierda(zonas)} )
+        keyboard.d().onPressDo( {susana.moverseDerecha(zonas)} )
+        keyboard.w().onPressDo( {susana.moverseArriba(zonas)} )
+        keyboard.s().onPressDo( {susana.moverseAbajo(zonas)} )
     }
 
     method cargarMapa(mapa) {
         game.clear()
-        self.configurarTeclas()
+        self.configurarTeclas(mapa.zonas())
 
         game.addVisual(susana)
         game.onCollideDo(susana, {algo => algo.interactuar()})
