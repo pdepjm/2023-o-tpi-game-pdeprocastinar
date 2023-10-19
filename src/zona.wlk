@@ -9,3 +9,6 @@ class Zona {
 	method yIni () = yIni
 	method yFin () = yFin
 }
+
+
+new casa (zona= )

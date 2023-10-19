@@ -20,7 +20,7 @@ object vecindad {
 }
 
 class Casa {
-	method zonas () = [new Zona(xIni = 0, xFin = 5, yIni = 0, yFin = 5), new Zona(xIni = 4, xFin = 10, yIni = 6, yFin = 7)]
+	method zonas () = [new Zona(xIni = 0, xFin = 29, yIni = 0, yFin = 19)]
     method position() = game.at(0,0)
     method image() = ""
     method propietario() = susana
