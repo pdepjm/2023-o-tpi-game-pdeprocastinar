@@ -3,22 +3,33 @@ import susana.*
 import elementos.*
 
 class Personaje {
-	const position = game.at(0,0)
-	const image = ""
-	const interaccion = 0
+	var position = game.at(0,0)
+	var image = ""
+	var interaccion = 0
 	
-	const messi = new Personaje(position=game.at(5,8), image = "messi.png", interaccion = hablarConMessi)
-	const moria = new Personaje(position = game.at(5,8), image = "moria.png",interaccion = hablarConMoria)
+	// Podríamos hacer un metodo hablarCon(alguien) y asignarselo a interaccion para usar polimorfismo
+
+	const messi = new Personaje(position = game.at(5,8), image = "messi.png", interaccion = hablarConMessi)
+	const moria = new Personaje(position = game.at(5,8), image = "moria.png", interaccion = hablarConMoria)
+
+	/*
+	const marley
+	const escudero
+	const mirtha
+	const betular
+	const pimpinela
+	const mbappe
+	*/
 
 	method acceder(personaje) = personaje
 }
 
-object hablarConMessi{
+object hablarConMessi {
 	
-	 method interaccion(){
-	 	if(susana.tuvo(botines)) {
+	method interactuar() {
+		if(susana.tuvo(botines)) {
 			game.say(self, "Conseguime el balón de oro, creo que lo tiene Moria")
-// method entregarSiTiene para hacer un or en el if y darle si se cumple alguna			
+// method entregarSiTiene para hacer un or en el if y darle si se cumple alguna
 		} else if (susana.tiene(botines)) {
 			susana.entregar(botines)
 			game.say(self, "Conseguime el balón de oro, creo que lo tiene Moria")
@@ -31,13 +42,13 @@ object hablarConMessi{
 		} else {
 			game.say(self, "Hola Su! Tengo que pedirte un favor, pero primero buscame mis botines")
 		}
-	 }
+	}
 }
 
 
 object hablarConMoria {
 
-	 method interactuar() {
+	method interactuar() {
 		if(susana.tiene(llaveEscudero)) {
 			susana.entregar(llaveEscudero)
 			game.say(self, "Habla con la tortuga para saber donde esta el balon")
