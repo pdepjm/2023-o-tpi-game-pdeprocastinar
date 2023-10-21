@@ -44,7 +44,7 @@ class Casa {
 }
 
 object accederCasaMoria inherits Casa {
-
+//?? , porque un objeto hereda de una clase?? no va directo object accederCasaMoria sin la herencia??
     method interactuar() {
         if(susana.tuvo(botines)) {
         	nivel.cargarMapa(self)
