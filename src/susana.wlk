@@ -10,11 +10,11 @@ object susana {
 
 	method tiene(elemento) = self.inventario().contains(elemento)
 	method tuvo(elemento) = self.elemEntregados().contains(elemento)
-
+// cambiar lugar x otra cosa mas expresiva
 	method agregarA(lugar, elemento) {
 		lugar.add(elemento)
 	}
-
+// solo se puede quitar del inventario
 	method quitarDe(lugar, elemento) {
 		lugar.remove(elemento)
 	}

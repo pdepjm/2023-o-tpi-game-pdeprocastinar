@@ -13,43 +13,21 @@ class Elemento {
         susana.agregarA(susana.inventario(), self)
         game.removeVisual(self)
     }
+
+    const botines = new Elemento(position = game.at(7,4),image = "botin.png" )
+
+    const copa = new Elemento(position = game.at(7,4),image = "botin.png" )
+    const balonDeOro = new Elemento(position = game.at(7,4),image = "botin.png" )
+    const collar = new Elemento(position = game.at(7,4),image = "botin.png" )
+    const llaveEscudero = new Elemento(position = game.at(7,4),image = "botin.png" )
+    const puerta = new Elemento(position = game.at(7,4),image = "puerta.png", interactuar = interactuarPuerta)
+    const martinFierro = new Elemento(position = game.at(7,4),image = "martinFierro.png" )
+
+
 }
-
-
-object botines inherits Elemento {
-    override method position() = game.at(7,4)
-
-    override method image() = "botin.png"
-
-}
-
-object copa inherits Elemento {
+object interactuarPuerta  {
 	
-}
-
-object balonDeOro inherits Elemento {
-	
-}
-
-object collar inherits Elemento {
-	
-}
-
-object llaveEscudero inherits Elemento {
-	
-}
-
-object puerta inherits Elemento {
-	override method image() = "puerta.png"
-	
-	override method interactuar() {
+	method interactuar() {
 		nivel.cargarMapa(vecindad)
 	}
-}
-
-object martinFierro inherits Elemento {
-    override method position() = game.at(7,4)
-
-    override method image() = "martinFierro.png"
-	
 }

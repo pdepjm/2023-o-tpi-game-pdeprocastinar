@@ -3,7 +3,7 @@ class Zona {
 	var  xFin	
 	var  yIni
 	var  yFin	
-	
+// ver que responsabilidades tiene zona
 	method xIni () = xIni
 	method xFin () = xFin
 	method yIni () = yIni
