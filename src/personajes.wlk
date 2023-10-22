@@ -1,5 +1,7 @@
 import wollok.game.*
 import susana.*
+import configuraciones.*
+import escenarios.*
 import elementos.*
 
 class Personaje {
@@ -9,23 +11,26 @@ class Personaje {
 	
 	// Podríamos hacer un metodo hablarCon(alguien) y asignarselo a interaccion para usar polimorfismo
 
-	const messi = new Personaje(position = game.at(5,8), image = "messi.png", interaccion = hablarConMessi)
-	const moria = new Personaje(position = game.at(5,8), image = "moria.png", interaccion = hablarConMoria)
-
-	/*
-	const marley
-	const escudero
-	const mirtha
-	const betular
-	const pimpinela
-	const mbappe
-	*/
 
 	method acceder(personaje) = personaje
 }
 
+const messi = new Personaje(position = game.at(5,8), image = "messi.png", interaccion = hablarConMessi)
+const moria = new Personaje(position = game.at(5,8), image = "moria.png", interaccion = hablarConMoria)
+
+const marley = new Personaje(position = game.at(5,8), image = "marley.png", interaccion = hablarConMessi)
+const escudero = new Personaje(position = game.at(5,8), image = "messi.png", interaccion = hablarConMessi)
+const mirtha = new Personaje(position = game.at(5,8), image = "messi.png", interaccion = hablarConMessi)
+const betular = new Personaje(position = game.at(5,8), image = "messi.png", interaccion = hablarConMessi)
+const pimpinela = new Personaje(position = game.at(5,8), image = "messi.png", interaccion = hablarConMessi)
+const mbappe = new Personaje(position = game.at(5,8), image = "messi.png", interaccion = hablarConMessi)
+
+const taylor = new Personaje(position = game.at(5,8), image = "messi.png", interaccion = hablarConMessi)
+const rickyFort = new Personaje(position = game.at(5,8), image = "messi.png", interaccion = hablarConMessi)
+
+
+
 object hablarConMessi {
-	
 	method interactuar() {
 		if(susana.tuvo(botines)) {
 			game.say(self, "Conseguime el balón de oro, creo que lo tiene Moria")
@@ -45,9 +50,7 @@ object hablarConMessi {
 	}
 }
 
-
 object hablarConMoria {
-
 	method interactuar() {
 		if(susana.tiene(llaveEscudero)) {
 			susana.entregar(llaveEscudero)

@@ -1,64 +1,87 @@
 import wollok.game.*
 import susana.*
-import personajes.*
 import configuraciones.*
+import personajes.*
 import elementos.*
-import zona.*
 
-object vecindad {
-//	method zonas () = [new Zona(xIni = 0, xFin = 5, yIni = 0, yFin = 5), new Zona(xIni = 4, xFin = 10, yIni = 6, yFin = 7), new Zona(xIni = 10, xFin = 12, yIni = 3, yFin = 5)]
-	method zonas () = [new Zona(xIni = 0, xFin = 29, yIni = 0, yFin = 19)]
-	method generar() {
-        game.ground("pastito.png")
-        game.addVisual(casaMessi)
-        game.addVisual(casaMoria)
+class CasaNoJugable {
+	var property position = game.at(0,0)
+    var image = ""
+    var propietario = null
+    
+    var dialogos = {}
+    
+    var property casaEscudero = new CasaNoJugable(position = game.at(15,17), image = "casa-escudero.png")
+	var property casaFort = new CasaNoJugable(position = game.at(25,3), image = "casa-fort.png")
+	var property casaPimpinela = new CasaNoJugable(position = game.at(5,11), image = "casa-pimpinela.png")
+	var property casaTaylor = new CasaNoJugable(position = game.at(8,2), image = "casa-taylor.png")
+    
+    method interactuar() = dialogos
+    
+    method mostrar() {
+    	game.addVisual(self)
+    }
+    
+}
+
+
+class Casa inherits CasaNoJugable {
+    var mapa = ""
+    var elemento = null
+    
+    var interaccion = { irA.interactuar(self) }
+    override method interactuar() = interaccion
+
+	method zonas() = [new Zona(xIni = 0, xFin = 29, yIni = 0, yFin = 19)]
+
+    method cargarInterior() {
+        game.addVisual(propietario)
+        self.evaluarCondiciones(elemento)
     }
 
-    method interactuar() {
-        nivel.cargarMapa(self)
+    method evaluarCondiciones(objeto) {
+        if (!susana.tiene(objeto) && !susana.tuvo(objeto)) game.addVisual(objeto)
+        game.addVisualIn(puerta, game.at(10,5))
+    }
+}
+
+const casaMessi = new Casa(position = game.at(18,7), image = "casa-messi.png", propietario = messi, elemento = botines)
+const carcelMoria = new Casa(position = game.at(24,17), image = "carcel.png", propietario = moria, elemento = martinFierro)
+
+
+object vecindad {
+	const mapa = "vecindad-redi.png"
+
+	method zonas() = [new Zona(xIni = 0, xFin = 29, yIni = 0, yFin = 19)]
+	
+	method generar() {
+        game.boardGround(mapa)
+     // casas.forEach({ casa => casa.mostrar() })
+     // casaMessi.mostrar()
+    }
+}
+
+object irA {
+	method interactuar(lugar) {
+		nivel.cargarMapa(lugar)
 	}
 }
 
-class Casa {
-	method zonas () = [new Zona(xIni = 0, xFin = 29, yIni = 0, yFin = 19)]
-    var position = game.at(0,0)
-    var image = ""
-    var propietario = susana
-    var piso = "madera.png"
-    var elemento = copa
-    var interaccion = entrarALaCasa
-
-    method generar() {
-        game.addVisual(self.propietario())
-        self.evaluarCondiciones(self.elemento())
-    }
-
-    /* method interactuar() {
-        nivel.cargarMapa(self)
-    } */
-
-    method evaluarCondiciones(elemento) {
-        if (!susana.tiene(elemento) && !susana.tuvo(elemento)) game.addVisual(elemento)
-        game.addVisualIn(puerta, game.at(10,5))
-    }
-
-    const casaMessi(position = game.at(4,4), image = "house2.png", propietario = messi, elemento = botines)
-    const casaMoria(position = game.at(12,8), image = "house3.png", propietario = moria, elemento = martinFierro, interactuar = accederCasaMoria)
-
-}
-
-object entrarALaCasa {
-    method interactuar(casa) {
-        nivel.cargarMapa(self)
-    }
-}
-
-object accederCasaMoria {
+object accederCarcel {
     method interactuar() {
         if(susana.tuvo(botines)) {
-            nivel.cargarMapa(self)
+            nivel.cargarMapa(carcelMoria)
         } else {
             game.say(susana, "Primero debo hablar con Messi")
         }
     }
+}
+
+object dialogos {
+	method casaMessi() {game.say(casaMessi, "Casa de Messi")}
+	method carcelMoria() {game.say(carcelMoria, "Carcel")}
+//	method casaEscudero() {game.say(casaEscudero, "Casa de Silvina Escudero")}
+//	method casaFort() {game.say(casaFort, "Casa de Ricky Fort")}
+//	method casaPimpinela() {game.say(casaPimpinela, "Casa de Pimpinela")}
+//	method casaTaylor() {game.say(casaTaylor, "Casa de Taylor Swift")}
 }

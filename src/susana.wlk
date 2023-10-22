@@ -1,20 +1,29 @@
 import wollok.game.*
+import configuraciones.*
+import escenarios.*
+import personajes.*
+import elementos.*
 
 object susana {
 	var property position = game.at(0,0)
 	const inventario = []
 	const elemEntregados = []
+	
+	method image() = "susana.png"
 
 	method inventario() = inventario
 	method elemEntregados() = elemEntregados
 
 	method tiene(elemento) = self.inventario().contains(elemento)
 	method tuvo(elemento) = self.elemEntregados().contains(elemento)
+	
+	method tieneOTuvo(elemento) = self.tiene(elemento) || self.tuvo(elemento)
+	
 // cambiar lugar x otra cosa mas expresiva
 	method agregarA(lugar, elemento) {
 		lugar.add(elemento)
 	}
-// solo se puede quitar del inventario
+
 	method quitarDe(lugar, elemento) {
 		lugar.remove(elemento)
 	}
@@ -24,44 +33,20 @@ object susana {
 		self.agregarA(elemEntregados, elemento)
 	}
 	
-	method image() = "marley.png"
-	
-	method quedaEnZona (zona, x, y) {
-		return x >= zona.xIni() &&  x <= zona.xFin() && y >= zona.yIni() && y <= zona.yFin()
-	}
 	
 	method moverseArriba(zonas) {
-		var puedeMoverse = false
-		
-		zonas.forEach({ zona => if (self.quedaEnZona(zona, position.x(), position.y() + 1)) { puedeMoverse = true } })
-
-		if(puedeMoverse) self.position(position.up(1))
+		zonas.forEach({ zona => if (zona.quedaEnZona(position.x(), position.y() + 1)) { self.position(position.up(1)) } })
 	}
 	
 	method moverseAbajo(zonas) {
-		var puedeMoverse = false
-		
-		zonas.forEach({ zona => if (self.quedaEnZona(zona, position.x(), position.y() - 1)) { puedeMoverse = true } })
-
-		if(puedeMoverse) self.position(position.down(1))
-		
+		zonas.forEach({ zona => if (zona.quedaEnZona(position.x(), position.y() - 1)) { self.position(position.down(1)) } })
 	}
 	
 	method moverseDerecha(zonas) {
-		
-		var puedeMoverse = false
-		
-		zonas.forEach({ zona => if (self.quedaEnZona(zona, position.x() + 1, position.y())) { puedeMoverse = true } })
-
-		if(puedeMoverse) self.position(position.right(1))
+		zonas.forEach({ zona => if (zona.quedaEnZona(position.x() + 1, position.y())) { self.position(position.right(1)) } })
 	}
 	
 	method moverseIzquierda(zonas) {
-		
-		var puedeMoverse = false
-		
-		zonas.forEach({ zona => if (self.quedaEnZona(zona, position.x() - 1, position.y())) { puedeMoverse = true } })
-
-		if(puedeMoverse) self.position(position.left(1))
+		zonas.forEach({ zona => if (zona.quedaEnZona(position.x() - 1, position.y())) { self.position(position.left(1)) } })
 	}
 }

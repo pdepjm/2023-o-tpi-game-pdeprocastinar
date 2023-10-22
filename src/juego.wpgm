@@ -2,6 +2,8 @@ import wollok.game.*
 import susana.*
 import configuraciones.*
 import escenarios.*
+import personajes.*
+import elementos.*
 
 program juego {
 	game.title("La vida de SU")
