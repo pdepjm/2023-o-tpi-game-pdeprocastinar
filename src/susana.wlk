@@ -20,19 +20,22 @@ object susana {
 	method tieneOTuvo(elemento) = self.tiene(elemento) || self.tuvo(elemento)
 	
 // cambiar lugar x otra cosa mas expresiva
-	method agregarA(lugar, elemento) {
-		lugar.add(elemento)
+	method agregarA(coleccion, elemento) {
+		coleccion.add(elemento)
 	}
 
-	method quitarDe(lugar, elemento) {
-		lugar.remove(elemento)
+	method quitarDeInventario(elemento) {
+		inventario.remove(elemento)
 	}
 
 	method entregar(elemento) {
-		self.quitarDe(inventario, elemento)
+		self.quitarDeInventario(elemento)
 		self.agregarA(elemEntregados, elemento)
 	}
-	
+
+
+
+	// Métodos de movimiento (optimizar lógica)
 	method moverseArriba(zonasHabilitadas, zonasProhibidas) {
 		if (zonasHabilitadas.any({ zona => zona.quedaEnZona(position.x(), position.y() + 1) }) && zonasProhibidas.all({ zona => !zona.quedaEnZona(position.x(), position.y() + 1) }) ) { self.position(position.up(1)) }
 	}
@@ -42,10 +45,10 @@ object susana {
 	}
 	
 	method moverseDerecha(zonasHabilitadas, zonasProhibidas) {
-		if (zonasHabilitadas.any({ zona => zona.quedaEnZona(position.x() + 1, position.y()) }) && zonasProhibidas.any({ zona => !zona.quedaEnZona(position.x() + 1, position.y()) }) ) { self.position(position.right(1)) } 
+		if (zonasHabilitadas.any({ zona => zona.quedaEnZona(position.x() + 1, position.y()) }) && zonasProhibidas.all({ zona => !zona.quedaEnZona(position.x() + 1, position.y()) }) ) { self.position(position.right(1)) } 
 	}
 	
 	method moverseIzquierda(zonasHabilitadas, zonasProhibidas) {
-		if (zonasHabilitadas.any({ zona => zona.quedaEnZona(position.x() - 1, position.y()) }) && zonasProhibidas.any({ zona => !zona.quedaEnZona(position.x() - 1, position.y()) }) ) { self.position(position.left(1)) } 
+		if (zonasHabilitadas.any({ zona => zona.quedaEnZona(position.x() - 1, position.y()) }) && zonasProhibidas.all({ zona => !zona.quedaEnZona(position.x() - 1, position.y()) }) ) { self.position(position.left(1)) } 
 	}
 }

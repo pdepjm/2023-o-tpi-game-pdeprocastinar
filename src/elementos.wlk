@@ -30,4 +30,10 @@ const collar = new Elemento(position = game.at(7,4), image = "botin.png" )
 const llaveEscudero = new Elemento(position = game.at(7,4), image = "botin.png" )
 const martinFierro = new Elemento(position = game.at(7,4), image = "martinFierro.png" )
 
-const puerta = new Elemento(position = game.at(7,4), image = "puerta.png", interaccion = { irA.interactuar(vecindad) })
+object baldosaCollide {
+	method image() = "tile.png"
+	
+	method colision(coordenadas) {
+		game.addVisualIn(self, coordenadas)
+	}
+}

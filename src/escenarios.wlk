@@ -5,62 +5,107 @@ import personajes.*
 import elementos.*
 
 class CasaNoJugable {
-	var property position = game.at(0,0)
-    var image = "vecindad/"
-    var propietario = null
-    
+    var puerta = game.origin()
     var dialogos = {}
     
-    var property casaEscudero = new CasaNoJugable(position = game.at(15,17), image = image + "casa-escudero.png")
-	var property casaFort = new CasaNoJugable(position = game.at(25,3), image = image + "casa-fort.png")
-	var property casaPimpinela = new CasaNoJugable(position = game.at(5,11), image = image + "casa-pimpinela.png")
-	var property casaTaylor = new CasaNoJugable(position = game.at(8,2), image = image + "casa-taylor.png")
+    method puerta() = puerta
     
     method interactuar() = dialogos
-    
-    method mostrar() {
-    	game.addVisual(self)
-    }
 }
 
+    const casaEscudero = new CasaNoJugable(puerta = game.at(15,17), dialogos = {})
+	const casaFort = new CasaNoJugable(puerta = game.at(25,3), dialogos = {})
+	const casaPimpinela = new CasaNoJugable(puerta = game.at(5,11), dialogos = {})
+	const casaTaylor = new CasaNoJugable(puerta = game.at(8,2), dialogos = {})
 
-class Casa inherits CasaNoJugable {
+class Escenario inherits CasaNoJugable {
     var mapa = ""
     var elemento = null
+    var propietario = null
     
+    // Probar unificar interaccion con dialogos (CasaNoJugable)
     var interaccion = { irA.interactuar(self) }
-    override method interactuar() = interaccion
+    
+    var zonasHabilitadas = [new Zona(xIni = 0, xFin = 29, yIni = 0, yFin = 19)]
+    var zonasProhibidas = [new Zona(xIni = 0, xFin = 0, yIni = 0, yFin = 0)]
 
-	method zonasHabilitadas() = [new Zona(xIni = 0, xFin = 29, yIni = 0, yFin = 19)]
+	method zonasHabilitadas() = zonasHabilitadas
+    method zonasProhibidas() = zonasProhibidas
+    
+	override method interactuar() = interaccion
 
     method generar() {
-    	game.boardGround(mapa)
+        game.boardGround(mapa)
         game.addVisual(propietario)
         self.evaluarCondiciones(elemento)
     }
 
     method evaluarCondiciones(objeto) {
-        if (!susana.tiene(objeto) && !susana.tuvo(objeto)) game.addVisual(objeto)
-        game.addVisualIn(puerta, game.at(10,5))
+        if (objeto != null) objeto.mostrar()
     }
 }
 
-const casaMessi = new Casa(position = game.at(18,7), image = "vecindad/casa-messi.png", propietario = messi, elemento = botines)
-const carcelMoria = new Casa(position = game.at(24,17), image = "vecindad/carcel.png", propietario = moria, elemento = martinFierro)
+// Verificar como hacemos para instanciarlo dentro de la clase y accederlo desde otro objeto
+const casaMessi = new Escenario(puerta = game.at(19,7), mapa = "vecindad/casa-map.png", propietario = messi, elemento = botines)
+const carcelMoria = new Escenario(puerta = game.at(24,17), mapa = "vecindad/casa-map.png", propietario = moria, elemento = martinFierro)
 
 
 object vecindad {
-	const mapa = "vecindad/vecindad-map.png"
-
-	method zonasHabilitadas() = [new Zona(xIni = 0, xFin = 29, yIni = 0, yFin = 19)]
-	method zonasProhibidas() = [new Zona(xIni = 0, xFin = 0, yIni = 0, yFin = 0)]
+	var mapa = "vecindad/vecindad-map.png"
+    var zonasHabilitadas = [new Zona(xIni = 0, xFin = 29, yIni = 0, yFin = 19)]
+    var zonasProhibidas = [ new Zona(xIni = 5, xFin = 6, yIni = 12, yFin = 13), 
+	                        new Zona(xIni = 7, xFin = 7, yIni = 2, yFin = 3), 
+	                        new Zona(xIni = 8, xFin = 9, yIni = 3, yFin = 4), 
+	                        new Zona(xIni = 10, xFin = 11, yIni = 3, yFin = 4),
+	                        new Zona(xIni = 9, xFin = 12, yIni = 18, yFin = 19),
+	                        new Zona(xIni = 12, xFin = 12, yIni = 19, yFin = 19), 
+	                        new Zona(xIni = 15, xFin = 16, yIni = 18, yFin = 18), 
+	                        new Zona(xIni = 14, xFin = 15, yIni = 13, yFin = 13),
+	                        new Zona(xIni = 15, xFin = 16, yIni = 9, yFin = 9),
+	                        new Zona(xIni = 14, xFin = 16, yIni = 1, yFin = 1),
+	                        new Zona(xIni = 15, xFin = 16, yIni = 2, yFin = 2),
+	                        new Zona(xIni = 17, xFin = 17, yIni = 7, yFin = 7),
+	                        new Zona(xIni = 18, xFin = 20, yIni = 8, yFin = 9),
+	                        new Zona(xIni = 18, xFin = 19, yIni = 0, yFin = 0),
+	                        new Zona(xIni = 25, xFin = 26, yIni = 4, yFin = 5),
+	                        new Zona(xIni = 24, xFin = 29, yIni = 19, yFin = 19),
+	                        new Zona(xIni = 28, xFin = 29, yIni = 2, yFin = 8)
+                        	]
 	
-	method generar() {
+	const puertasDisponibles = [casaMessi, carcelMoria, casaEscudero, casaFort, casaPimpinela, casaTaylor]
+
+	method zonasHabilitadas() = zonasHabilitadas
+    method zonasProhibidas() = zonasProhibidas
+    
+    method agregarPuertas() {
+    	puertasDisponibles.forEach({ casa => baldosaCollide.colision(casa.puerta()) })
+    }
+
+    method generar() {
         game.boardGround(mapa)
-     // casas.forEach({ casa => casa.mostrar() })
-     // casaMessi.mostrar()
+        self.agregarPuertas()
     }
 }
+
+//const vecindad = new Escenario(mapa = "vecindad/vecindad-map.png",
+//                                zonasProhibidas = [ new Zona(xIni = 5, xFin = 6, yIni = 12, yFin = 13), 
+//                                new Zona(xIni = 7, xFin = 7, yIni = 2, yFin = 3), 
+//                                new Zona(xIni = 10, xFin = 11, yIni = 4, yFin = 5),
+//                                new Zona(xIni = 9, xFin = 12, yIni = 18, yFin = 19),
+//                                new Zona(xIni = 12, xFin = 12, yIni = 19, yFin = 19), 
+//                                new Zona(xIni = 15, xFin = 16, yIni = 18, yFin = 18), 
+//                                new Zona(xIni = 14, xFin = 15, yIni = 13, yFin = 13),
+//                                new Zona(xIni = 15, xFin = 16, yIni = 9, yFin = 9),
+//                                new Zona(xIni = 14, xFin = 16, yIni = 1, yFin = 1),
+//                                new Zona(xIni = 15, xFin = 16, yIni = 2, yFin = 2),
+//                                new Zona(xIni = 17, xFin = 17, yIni = 7, yFin = 7),
+//                                new Zona(xIni = 18, xFin = 20, yIni = 8, yFin = 9),
+//                                new Zona(xIni = 18, xFin = 19, yIni = 0, yFin = 0),
+//                                new Zona(xIni = 25, xFin = 26, yIni = 4, yFin = 5),
+//                                new Zona(xIni = 24, xFin = 29, yIni = 19, yFin = 19),
+//                                new Zona(xIni = 28, xFin = 29, yIni = 2, yFin = 8)     
+//                                ]
+//                            )
 
 object irA {
 	method interactuar(lugar) {
