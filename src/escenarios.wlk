@@ -6,15 +6,15 @@ import elementos.*
 
 class CasaNoJugable {
 	var property position = game.at(0,0)
-    var image = ""
+    var image = "vecindad/"
     var propietario = null
     
     var dialogos = {}
     
-    var property casaEscudero = new CasaNoJugable(position = game.at(15,17), image = "casa-escudero.png")
-	var property casaFort = new CasaNoJugable(position = game.at(25,3), image = "casa-fort.png")
-	var property casaPimpinela = new CasaNoJugable(position = game.at(5,11), image = "casa-pimpinela.png")
-	var property casaTaylor = new CasaNoJugable(position = game.at(8,2), image = "casa-taylor.png")
+    var property casaEscudero = new CasaNoJugable(position = game.at(15,17), image = image + "casa-escudero.png")
+	var property casaFort = new CasaNoJugable(position = game.at(25,3), image = image + "casa-fort.png")
+	var property casaPimpinela = new CasaNoJugable(position = game.at(5,11), image = image + "casa-pimpinela.png")
+	var property casaTaylor = new CasaNoJugable(position = game.at(8,2), image = image + "casa-taylor.png")
     
     method interactuar() = dialogos
     
@@ -45,12 +45,12 @@ class Casa inherits CasaNoJugable {
     }
 }
 
-const casaMessi = new Casa(position = game.at(18,7), image = "casa-messi.png", propietario = messi, elemento = botines)
-const carcelMoria = new Casa(position = game.at(24,17), image = "carcel.png", propietario = moria, elemento = martinFierro)
+const casaMessi = new Casa(position = game.at(18,7), image = "vecindad/casa-messi.png", propietario = messi, elemento = botines)
+const carcelMoria = new Casa(position = game.at(24,17), image = "vecindad/carcel.png", propietario = moria, elemento = martinFierro)
 
 
 object vecindad {
-	const mapa = "vecindad-redi.png"
+	const mapa = "vecindad/vecindad-map.png"
 
 	method zonas() = [new Zona(xIni = 0, xFin = 29, yIni = 0, yFin = 19)]
 	
