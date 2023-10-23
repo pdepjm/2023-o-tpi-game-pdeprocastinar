@@ -33,20 +33,19 @@ object susana {
 		self.agregarA(elemEntregados, elemento)
 	}
 	
-	
 	method moverseArriba(zonas) {
-		zonas.forEach({ zona => if (zona.quedaEnZona(position.x(), position.y() + 1)) { self.position(position.up(1)) } })
+		if (zonas.any(zona => zona.quedaEnZona(position.x(), position.y() + 1))) { self.position(position.up(1)) }
 	}
-	
+
 	method moverseAbajo(zonas) {
-		zonas.forEach({ zona => if (zona.quedaEnZona(position.x(), position.y() - 1)) { self.position(position.down(1)) } })
+		if (zonas.any(zona => zona.quedaEnZona(position.x(), position.y() - 1))) { self.position(position.down(1)) }
 	}
 	
 	method moverseDerecha(zonas) {
-		zonas.forEach({ zona => if (zona.quedaEnZona(position.x() + 1, position.y())) { self.position(position.right(1)) } })
+		if (zonas.any(zona => zona.quedaEnZona(position.x() + 1, position.y()))) { self.position(position.right(1)) } 
 	}
 	
 	method moverseIzquierda(zonas) {
-		zonas.forEach({ zona => if (zona.quedaEnZona(position.x() - 1, position.y())) { self.position(position.left(1)) } })
+		if (zonas.any(zona => zona.quedaEnZona(position.x() - 1, position.y()))) { self.position(position.left(1)) } 
 	}
 }
