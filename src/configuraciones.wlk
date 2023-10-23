@@ -5,16 +5,16 @@ import personajes.*
 import elementos.*
 
 object nivel {
-    method configurarTeclas(zonas) {
-        keyboard.a().onPressDo( {susana.moverseIzquierda(zonas)} )
-        keyboard.d().onPressDo( {susana.moverseDerecha(zonas)} )
-        keyboard.w().onPressDo( {susana.moverseArriba(zonas)} )
-        keyboard.s().onPressDo( {susana.moverseAbajo(zonas)} )
+    method configurarTeclas(zonasHabilitadas, zonasProhibidas) {
+        keyboard.a().onPressDo( {susana.moverseIzquierda(zonasHabilitadas, zonasProhibidas)} )
+        keyboard.d().onPressDo( {susana.moverseDerecha(zonasHabilitadas, zonasProhibidas)} )
+        keyboard.w().onPressDo( {susana.moverseArriba(zonasHabilitadas, zonasProhibidas)} )
+        keyboard.s().onPressDo( {susana.moverseAbajo(zonasHabilitadas, zonasProhibidas)} )
     }
 
     method cargarMapa(mapa) {
         game.clear()
-        self.configurarTeclas(mapa.zonas())
+        self.configurarTeclas(mapa.zonasHabilitadas(), mapa.zonasProhibidas())
 
         game.addVisual(susana)
         game.onCollideDo(susana, {algo => algo.interactuar()})
@@ -34,5 +34,5 @@ class Zona {
 	method yIni() = yIni
 	method yFin() = yFin
 	
-	method quedaEnZona (x, y) = x >= xIni &&  x <= xFin && y >= yIni && y <= yFin
+	method quedaEnZona(x, y) = x >= xIni &&  x <= xFin && y >= yIni && y <= yFin
 }

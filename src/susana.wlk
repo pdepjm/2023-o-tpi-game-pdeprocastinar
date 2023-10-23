@@ -33,19 +33,19 @@ object susana {
 		self.agregarA(elemEntregados, elemento)
 	}
 	
-	method moverseArriba(zonas) {
-		if (zonas.any(zona => zona.quedaEnZona(position.x(), position.y() + 1))) { self.position(position.up(1)) }
+	method moverseArriba(zonasHabilitadas, zonasProhibidas) {
+		if (zonasHabilitadas.any({ zona => zona.quedaEnZona(position.x(), position.y() + 1) }) && zonasProhibidas.all({ zona => !zona.quedaEnZona(position.x(), position.y() + 1) }) ) { self.position(position.up(1)) }
 	}
 
-	method moverseAbajo(zonas) {
-		if (zonas.any(zona => zona.quedaEnZona(position.x(), position.y() - 1))) { self.position(position.down(1)) }
+	method moverseAbajo(zonasHabilitadas, zonasProhibidas) {
+		if (zonasHabilitadas.any({ zona => zona.quedaEnZona(position.x(), position.y() - 1) }) && zonasProhibidas.all({ zona => !zona.quedaEnZona(position.x(), position.y() - 1) }) ) { self.position(position.down(1)) }
 	}
 	
-	method moverseDerecha(zonas) {
-		if (zonas.any(zona => zona.quedaEnZona(position.x() + 1, position.y()))) { self.position(position.right(1)) } 
+	method moverseDerecha(zonasHabilitadas, zonasProhibidas) {
+		if (zonasHabilitadas.any({ zona => zona.quedaEnZona(position.x() + 1, position.y()) }) && zonasProhibidas.any({ zona => !zona.quedaEnZona(position.x() + 1, position.y()) }) ) { self.position(position.right(1)) } 
 	}
 	
-	method moverseIzquierda(zonas) {
-		if (zonas.any(zona => zona.quedaEnZona(position.x() - 1, position.y()))) { self.position(position.left(1)) } 
+	method moverseIzquierda(zonasHabilitadas, zonasProhibidas) {
+		if (zonasHabilitadas.any({ zona => zona.quedaEnZona(position.x() - 1, position.y()) }) && zonasProhibidas.any({ zona => !zona.quedaEnZona(position.x() - 1, position.y()) }) ) { self.position(position.left(1)) } 
 	}
 }

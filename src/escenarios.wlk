@@ -21,7 +21,6 @@ class CasaNoJugable {
     method mostrar() {
     	game.addVisual(self)
     }
-    
 }
 
 
@@ -32,9 +31,10 @@ class Casa inherits CasaNoJugable {
     var interaccion = { irA.interactuar(self) }
     override method interactuar() = interaccion
 
-	method zonas() = [new Zona(xIni = 0, xFin = 29, yIni = 0, yFin = 19)]
+	method zonasHabilitadas() = [new Zona(xIni = 0, xFin = 29, yIni = 0, yFin = 19)]
 
-    method cargarInterior() {
+    method generar() {
+    	game.boardGround(mapa)
         game.addVisual(propietario)
         self.evaluarCondiciones(elemento)
     }
@@ -52,7 +52,8 @@ const carcelMoria = new Casa(position = game.at(24,17), image = "vecindad/carcel
 object vecindad {
 	const mapa = "vecindad/vecindad-map.png"
 
-	method zonas() = [new Zona(xIni = 0, xFin = 29, yIni = 0, yFin = 19)]
+	method zonasHabilitadas() = [new Zona(xIni = 0, xFin = 29, yIni = 0, yFin = 19)]
+	method zonasProhibidas() = [new Zona(xIni = 0, xFin = 0, yIni = 0, yFin = 0)]
 	
 	method generar() {
         game.boardGround(mapa)
