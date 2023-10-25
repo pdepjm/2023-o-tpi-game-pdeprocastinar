@@ -3,6 +3,7 @@ import susana.*
 import configuraciones.*
 import escenarios.*
 import personajes.*
+import interacciones.*
 
 class Elemento {
     const position = game.at(0,0)
@@ -29,3 +30,5 @@ const copa = new Elemento()
 const balonDeOro = new Elemento()
 const collar = new Elemento()
 const llaveEscudero = new Elemento()
+const torta = new Elemento()
+const veneno = new Elemento()

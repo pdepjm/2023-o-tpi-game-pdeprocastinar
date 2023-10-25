@@ -3,6 +3,7 @@ import susana.*
 import escenarios.*
 import personajes.*
 import elementos.*
+import interacciones.*
 
 object nivel {
     method configurarTeclas(zonasHabilitadas, zonasProhibidas) {

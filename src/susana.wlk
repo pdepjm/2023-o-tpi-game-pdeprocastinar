@@ -3,6 +3,7 @@ import configuraciones.*
 import escenarios.*
 import personajes.*
 import elementos.*
+import interacciones.*
 
 object susana {
 	var property position = game.at(19,3)

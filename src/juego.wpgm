@@ -4,6 +4,7 @@ import configuraciones.*
 import escenarios.*
 import personajes.*
 import elementos.*
+import interacciones.*
 
 program juego {
 	game.title("La vida de SU")

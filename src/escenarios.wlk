@@ -3,6 +3,7 @@ import susana.*
 import configuraciones.*
 import personajes.*
 import elementos.*
+import interacciones.*
 
 class Puerta {
 	var position = game.origin()
@@ -14,11 +15,11 @@ class Puerta {
 	method position() = position
 	
 	method agregar() {
-    	game.addVisual(self)
+        game.addVisual(self)
     }
     
     method interactuar() {
-    	interaccion.interactuar(interactuaCon)
+        interaccion.interactuar(interactuaCon)
     }
 }
 
@@ -91,12 +92,12 @@ object vecindad {
 	const puertaCarcel = new Puerta(position = game.at(26,18), interaccion = accederCarcel, interactuaCon = carcelMoria )
 	const puertaTaylor = new Puerta(position = game.at(8,2), interaccion = new Dialogo(mensaje = "Shake it off, Shake it off"))
 	const puertaFort = new Puerta(position = game.at(25,3), interaccion = new Dialogo(mensaje = "MAIAMEEE"))
-//	const puertaEscudero = new Puerta(position = game.at(15,17), interaccion = new Dialogo(mensaje = "Casa de Silvina Escudero"))
 	const puertaPimpinela = new Puerta(position = game.at(6,11), interaccion = new Dialogo(mensaje = "quien ES?"))
 	
-	// Saqué la puerta de Escudero, chequear si es realmente necesaria
 	const puertasDisponibles = [puertaMessi, puertaCarcel, puertaTaylor, puertaFort, puertaPimpinela]
-    const personajes = [mirtha]
+    const personajes = [mirtha, betularOculto, escudero]
+
+    method personajes() = personajes
 
 	method zonasHabilitadas() = zonasHabilitadas
     method zonasProhibidas() = zonasProhibidas
@@ -113,29 +114,4 @@ object vecindad {
         self.agregar(puertasDisponibles)
         self.agregar(personajes)
     }
-}
-
-
-
-object irA {
-	method interactuar(lugar) {
-		nivel.cargarMapa(lugar)
-	}
-}
-
-object accederCarcel {
-    method interactuar(mapa) {
-        if(susana.tuvo(botines)) {
-            nivel.cargarMapa(mapa)
-        } else {
-            game.say(susana, "Primero debo hablar con Messi")
-        }
-    }
-}
-
-class Dialogo {
-	var mensaje = ""
-	
-	method interactuar(puerta) {game.say(puerta, mensaje)}
-
 }
