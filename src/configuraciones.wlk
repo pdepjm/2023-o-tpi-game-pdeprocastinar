@@ -16,10 +16,12 @@ object nivel {
         game.clear()
         self.configurarTeclas(mapa.zonasHabilitadas(), mapa.zonasProhibidas())
 
+        mapa.generar()
+
         game.addVisual(susana)
         game.onCollideDo(susana, {algo => algo.interactuar()})
         
-        mapa.generar()
+        mapa.agregarNoPisables()
     }
 }
 
@@ -34,5 +36,8 @@ class Zona {
 	method yIni() = yIni
 	method yFin() = yFin
 	
-	method quedaEnZona(x, y) = x >= xIni &&  x <= xFin && y >= yIni && y <= yFin
+//	method quedaEnZona(x, y) = x >= xIni &&  x <= xFin && y >= yIni && y <= yFin
+	
+	method quedaEnZona(pos) = pos.x() >= xIni &&  pos.x() <= xFin && pos.y() >= yIni && pos.y() <= yFin
+
 }
