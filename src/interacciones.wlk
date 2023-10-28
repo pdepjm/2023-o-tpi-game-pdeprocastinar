@@ -92,10 +92,10 @@ object hablarConBetular {
 	}
 }
 
-// no funciona, ayuda Cecii
+
 object hablarConPimpinela{
 	method interactuar(personaje) {
-		if(susana.tuvo(botines)) {
+		if(susana.tuvo(collar)) {
 			//game.say(susana,"Chicos, se que estan fumigando")
 			//game.say(susana,"¿Me prestan veneno para mi casa?")
 			game.say(personaje,"Toma el veneno susy")
