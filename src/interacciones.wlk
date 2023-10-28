@@ -92,20 +92,21 @@ object hablarConBetular {
 	}
 }
 
+// no funciona, ayuda Cecii
 object hablarConPimpinela{
 	method interactuar(personaje) {
-		if(susana.tuvo(collar)) {
-			game.say(susana,"Chicos, se que estan fumigando")
-			game.say(susana,"¿Me prestan veneno para mi casa?")
-			game.say(personaje,"Si Susy, tomá")
+		if(susana.tuvo(botines)) {
+			//game.say(susana,"Chicos, se que estan fumigando")
+			//game.say(susana,"¿Me prestan veneno para mi casa?")
+			game.say(personaje,"Toma el veneno susy")
 			susana.agregarA(susana.inventario(), veneno)
 		} else if(susana.tuvo(veneno) || susana.tiene(veneno)){
 			game.say(personaje,"Quién es?")
-			game.say(susana,"Soy yo!")		
+			//game.say(susana,"Soy yo!")		
 		}
 		else {
 			game.say(personaje,"Quién es?")
-			game.say(susana,"Soy yo!")
+			//game.say(susana,"Soy yo!")
 		}
 	}
 }	
