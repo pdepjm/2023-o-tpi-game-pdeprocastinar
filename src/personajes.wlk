@@ -27,9 +27,9 @@ class Personaje {
 const messi = new Personaje(position = game.at(5,8), image = "messi.png", interaccion = hablarConMessi)
 const moria = new Personaje(position = game.at(5,8), image = "moria.png", interaccion = hablarConMoria)
 
-const marley = new Personaje(position = game.at(20,3), image = "marley.png", interaccion = hablarConMessi)
+const marley = new Personaje(position = game.at(20,3), image = "marley.png", interaccion = hablarConMarley)
 const escudero = new Personaje(position = game.at(5,8), image = "escudero.png", interaccion = hablarConEscudero)
-const escuderoMuerta = new Personaje(position = game.at(5,8), image = "escudero-dead.png")
+const escuderoMuerta = new Personaje(position = game.at(6,8), image = "escudero-dead.png")
 const mirtha = new Personaje(position = game.at(8,8), image = "mirtha.png", interaccion = hablarConMirtha)
 
 const betular = new Personaje(position = posicionBetu.right(1), image = "betular.png", interaccion = hablarConBetular)
@@ -40,4 +40,4 @@ const posicionesBetular = [game.at(3,17), game.at(0,9), game.at(1,3)]
 const posicionBetu = posicionesBetular.anyOne()
 
 const tortuga = new Personaje(position = game.at(28,9), image = "tortuga.png", interaccion = hablarConTortuga)
-const mbappe = new Personaje(position = game.at(28,9), image = "mbappe.png", interaccion = hablarConTortuga)
+const mbappe = new Personaje(position = game.at(29,9), image = "mbappe.png", interaccion = hablarConTortuga)

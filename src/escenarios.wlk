@@ -95,7 +95,7 @@ object vecindad {
 	const puertaPimpinela = new Puerta(position = game.at(6,11), interaccion = hablarConPimpinela)
 	
 	const puertasDisponibles = [puertaMessi, puertaCarcel, puertaTaylor, puertaFort, puertaPimpinela]
-    const personajes = [mirtha, betularOculto, escudero, tortuga]
+    const personajes = [mirtha, betularOculto, escudero, tortuga, marley]
 
     method personajes() = personajes
 
