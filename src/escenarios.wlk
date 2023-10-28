@@ -92,7 +92,7 @@ object vecindad {
 	const puertaCarcel = new Puerta(position = game.at(26,18), interaccion = accederCarcel, interactuaCon = carcelMoria )
 	const puertaTaylor = new Puerta(position = game.at(8,2), interaccion = new Dialogo(mensaje = "Shake it off, Shake it off"))
 	const puertaFort = new Puerta(position = game.at(25,3), interaccion = new Dialogo(mensaje = "MAIAMEEE"))
-	const puertaPimpinela = new Puerta(position = game.at(6,11), interaccion = new Dialogo(mensaje = "quien ES?"))
+	const puertaPimpinela = new Puerta(position = game.at(6,11), interaccion = hablarConPimpinela)
 	
 	const puertasDisponibles = [puertaMessi, puertaCarcel, puertaTaylor, puertaFort, puertaPimpinela]
     const personajes = [mirtha, betularOculto, escudero]

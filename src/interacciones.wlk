@@ -92,6 +92,24 @@ object hablarConBetular {
 	}
 }
 
+object hablarConPimpinela{
+	method interactuar(personaje) {
+		if(susana.tuvo(collar)) {
+			game.say(susana,"Chicos, se que estan fumigando")
+			game.say(susana,"¿Me prestan veneno para mi casa?")
+			game.say(personaje,"Si Susy, tomá")
+			susana.agregarA(susana.inventario(), veneno)
+		} else if(susana.tuvo(veneno) || susana.tiene(veneno)){
+			game.say(personaje,"Quién es?")
+			game.say(susana,"Soy yo!")		
+		}
+		else {
+			game.say(personaje,"Quién es?")
+			game.say(susana,"Soy yo!")
+		}
+	}
+}	
+
 object transformarPersonaje {
 	method cambiarVisual(personaje, nuevoVisual) {
 		vecindad.personajes().add(nuevoVisual)
