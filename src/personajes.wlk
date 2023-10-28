@@ -39,4 +39,5 @@ const posicionesBetular = [game.at(3,17), game.at(0,9), game.at(1,3)]
 // revisar como hacer para que se ejecute el anyOne cada vez que se sale de una casa
 const posicionBetu = posicionesBetular.anyOne()
 
-const mbappe = new Personaje(position = game.at(5,8), image = "mbappe.png", interaccion = hablarConMessi)
+const tortuga = new Personaje(position = game.at(28,9), image = "tortuga.png", interaccion = hablarConTortuga)
+const mbappe = new Personaje(position = game.at(28,9), image = "mbappe.png", interaccion = hablarConTortuga)

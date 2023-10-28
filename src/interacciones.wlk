@@ -29,7 +29,7 @@ object hablarConMoria {
 	method interactuar(personaje) {
 		if(susana.tiene(llaveEscudero)) {
 			susana.entregar(llaveEscudero)
-			game.say(personaje, "Habla con la tortuga para saber donde esta el balon")
+			game.say(personaje, "Habla con la tortuga para saber donde esta el balon de oro")
 			
 		} else if (susana.tiene(collar)) {
 			susana.entregar(collar)
@@ -65,7 +65,9 @@ object hablarConEscudero {
 			susana.entregar(torta)
 			susana.entregar(veneno)
 			game.say(personaje,"Que rico Su! Muchas gracias")
+			susana.agregarA(susana.inventario(), llaveEscudero)
 			transformarPersonaje.cambiarVisual(personaje, escuderoMuerta)
+			game.say(susana,"JA, le voy a robar sus llaves")
 		
 		} else if(susana.tuvo(collar)){
 			game.say(personaje,"Que ganas de comer una rica torta")
@@ -110,6 +112,17 @@ object hablarConPimpinela{
 		}
 	}
 }	
+
+object hablarConTortuga{
+	method interactuar(personaje) {
+		if(susana.tuvo(llaveEscudero)) {
+			game.say(susana,"Ya se que sos Mbappe")
+			transformarPersonaje.cambiarVisual(personaje, mbappe)
+			game.say(mbappe,"Me descubriste! Toma el balon")
+			susana.agregarA(susana.inventario(), balonDeOro)	
+		}
+}
+}
 
 object transformarPersonaje {
 	method cambiarVisual(personaje, nuevoVisual) {
