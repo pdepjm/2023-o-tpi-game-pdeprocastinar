@@ -136,37 +136,38 @@ object hablarConTortuga {
 
 object hablarConMarley {
 	method interactuar(personaje) {
-		if(susana.tuvo(botines)) {
-			game.say(personaje,"Que flaquita estas Su! Moria esta")
-			game.say(personaje,"en la carcel, ella puede ayudarte con tu objetivo")
-		} else if(susana.tiene(collar)){
-			game.say(personaje,"Ame ese collar, daselo a Moria")
-			game.say(personaje,"antes de que trate de robartelo...")		
+		if(susana.tuvo(veneno) && susana.tuvo(torta)) {
+			game.say(personaje,"Que reyna sos Su! Moria te va")
+			game.say(personaje,"a indicar como seguir"
+			
+		} else if(susana.tiene(veneno) && !susana.tiene(torta)){
+			game.say(personaje,"Betular hace tortas riquisimas, pero")
+			game.say(personaje,"por algun motivo siempre anda escondido")		
+		}
+		else if(susana.tiene(torta) && !susana.tiene(veneno)){
+			game.say(personaje,"Me entere que los Pimpinela andan fumigando, ")
+			game.say(personaje,"ellos deben tener veneno de sobra")
 		}
 		else if(susana.tuvo(collar)){
 			game.say(personaje,"Hora de hacer la gran Yiya Murano:")
 			game.say(personaje,"torta y veneno! Dales ambas a Silvina")
 			game.say(personaje,"y la casa es tuya")
 		}
-		else if(susana.tiene(torta) && !susana.tiene(veneno)){
-			game.say(personaje,"Me entere que los Pimpinela andan fumigando, ")
-			game.say(personaje,"ellos deben tener veneno de sobra")
-		}
-		else if(susana.tiene(veneno) && !susana.tiene(torta)){
-			game.say(personaje,"Betular hace tortas riquisimas, pero")
-			game.say(personaje,"por algun motivo siempre anda escondido")
+		else if(susana.tiene(collar)){
+			game.say(personaje,"Ame ese collar, daselo a Moria")
+			game.say(personaje,"antes de que trate de robartelo...")
 		}
 		}
-		else if(susana.tuvo(veneno) && susana.tuvo(torta)){
-			game.say(personaje,"Que reyna sos Su! Moria te va")
-			game.say(personaje,"a indicar como seguir")
+		else if(susana.tuvo(botines)){
+			game.say(personaje,"Que flaquita estas Su! Moria esta")
+			game.say(personaje,"en la carcel, ella puede ayudarte con tu objetivo")
 		}
 		else {
 			game.say(personaje,"Bienvenida Su! Busca a Messi para ")
 			game.say(personaje,"saber por donde arrancar")
 		}
 	}
-	
+		
 	
 
 object transformarPersonaje {
