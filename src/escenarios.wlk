@@ -41,6 +41,9 @@ class Escenario {
 	
     method puerta() = puerta
 
+    method eliminarPropietario(){
+        game.removeVisual(propietario)
+    }
     method generar() {
         game.addVisual(mapa)
         game.addVisual(propietario)
@@ -86,7 +89,18 @@ object vecindad {
     const partesNoPisables = new Visual(image = "vecindad/vecindad-no-pisable.png")
                         	
     const casaMessi = new Escenario(puerta = puertaMessi, mapa = new Visual(image = "vecindad/casa-map.png"), propietario = messi, elemento = botines)
-	const carcelMoria = new Escenario(puerta = puertaCarcel, mapa = new Visual(image = "vecindad/casa-map.png"), propietario = moria, elemento = martinFierro)                    	           	
+	const carcelMoria = new Escenario(puerta = puertaCarcel, mapa = new Visual(image = "vecindad/carcel_interior.png"), propietario = moria, elemento = martinFierro, zonasHabilitadas = [ 
+                                                                                                                                                                                            new Zona(xIni = 0, xFin = 12, yIni = 2, yFin = 3), 
+                                                                                                                                                                                            new Zona(xIni = 11, xFin = 12, yIni = 4, yFin = 9),
+                                                                                                                                                                                            new Zona(xIni = 13, xFin = 17, yIni = 8, yFin = 9),
+                                                                                                                                                                                            new Zona(xIni = 18, xFin = 19, yIni = 2, yFin = 9),
+                                                                                                                                                                                            new Zona(xIni = 20, xFin = 29, yIni = 2, yFin = 3), 
+                                                                                                                                                                                            new Zona(xIni = 20, xFin = 29, yIni = 2, yFin = 3), 
+                                                                                                                                                                                            new Zona(xIni = 20, xFin = 29, yIni = 2, yFin = 3),
+                                                                                                                                                                                            new Zona(xIni = 5 , xFin = 5, yIni = 4, yFin = 5),
+                                                                                                                                                                                            new Zona(xIni = 26, xFin = 26, yIni = 4, yFin = 5)
+
+                                                                                                                                                                                            ])                    	           	
 	
 	const puertaMessi = new Puerta(position = game.at(19,7), interaccion = irA, interactuaCon = casaMessi )
 	const puertaCarcel = new Puerta(position = game.at(26,18), interaccion = accederCarcel, interactuaCon = carcelMoria )

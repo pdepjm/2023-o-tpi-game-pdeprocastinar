@@ -32,18 +32,31 @@ object hablarConMoria {
 	method interactuar(personaje) {
 		if(susana.tiene(llaveEscudero)) {
 			susana.entregar(llaveEscudero)
+			vecindad.personajes().add(moriaLlave)
 			game.say(personaje, "Te mentí! Yo no tengo el balón de oro")
 			game.say(personaje, "Andá con la tortuga")
-			game.say(personaje, "Ella va a saber donde está")
+			game.say(personaje, "va a saber donde está")
+			try {
+				carcelMoria.eliminarPropietario()
+			} catch (error) { 
+				game.say(error)
+			}
 			
 		} else if (susana.tiene(collar)) {
 			susana.entregar(collar)
-			game.say(personaje, "Conseguime la casa de Silvina Escupidero")
+			game.say(personaje, "Conseguime la llave ")
+			game.say(personaje, "de Silvina Escupidero")
 			game.say(personaje, "Y yo te voy a dar el balón de oro")
-			
-		} else if (susana.tuvo(collar) && !susana.tiene(llaveEscudero)) {
-			game.say(personaje, "Conseguime la casa de Silvina Escupidero")
+			if(!susana.tuvo(veneno) && !susana.tiene(veneno)){
+			game.say(personaje, "Marley te puede ayudar")
+			}			
+		} else if (susana.tuvo(collar) && !susana.tiene(llaveEscudero) && !susana.tuvo(llaveEscudero)) {
+			game.say(personaje, "Conseguime la llave de la casa")
+			game.say(personaje, "de Silvina Escupidero")
 			game.say(personaje, "Y yo te voy a dar el balón de oro")
+			if(!susana.tuvo(veneno) && !susana.tiene(veneno)){
+			game.say(personaje, "Marley te puede ayudar")
+			}
 			
 		} else {
 			game.say(personaje, "Conseguime el collar de Mirtha")
@@ -138,9 +151,10 @@ object hablarConMarley {
 	method interactuar(personaje) {
 		if(susana.tuvo(veneno) && susana.tuvo(torta)) {
 			game.say(personaje,"Que reyna sos Su! Moria te va")
-			game.say(personaje,"a indicar como seguir"
+			game.say(personaje,"a indicar como seguir")
 			
-		} else if(susana.tiene(veneno) && !susana.tiene(torta)){
+		} 
+		else if(susana.tiene(veneno) && !susana.tiene(torta)){
 			game.say(personaje,"Betular hace tortas riquisimas, pero")
 			game.say(personaje,"por algun motivo siempre anda escondido")		
 		}
@@ -167,10 +181,10 @@ object hablarConMarley {
 			game.say(personaje,"saber por donde arrancar")
 		}
 	}
-		
 	
 
-object transformarPersonaje {
+
+object transformarPersonaje{
 	method cambiarVisual(personaje, nuevoVisual) {
 		vecindad.personajes().add(nuevoVisual)
 		vecindad.personajes().remove(personaje)
@@ -178,6 +192,10 @@ object transformarPersonaje {
 		game.addVisual(nuevoVisual)
 	}
 }
+
+
+
+
 
 object noHacerNada {
 	method interactuar(_) {}
@@ -195,6 +213,7 @@ object accederCarcel {
     method interactuar(mapa) {
         if(susana.tuvo(botines)) {
             nivel.cargarMapa(mapa)
+			susana.position(game.at(0,2)) 
         } else {
             game.say(susana, "Primero debo hablar con Messi")
         }
