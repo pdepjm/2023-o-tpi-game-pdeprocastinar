@@ -37,6 +37,7 @@ object hablarConMoria {
 			game.say(personaje, "Andá con la tortuga")
 			game.say(personaje, "va a saber donde está")
 			
+			game.schedule(8000, { game.removeVisual(moria) })	
 			
 		} else if (susana.tiene(collar)) {
 			susana.entregar(collar)
