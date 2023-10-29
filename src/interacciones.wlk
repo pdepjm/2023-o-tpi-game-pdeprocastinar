@@ -36,11 +36,8 @@ object hablarConMoria {
 			game.say(personaje, "Te mentí! Yo no tengo el balón de oro")
 			game.say(personaje, "Andá con la tortuga")
 			game.say(personaje, "va a saber donde está")
-			try {
-				carcelMoria.eliminarPropietario()
-			} catch (error) { 
-				game.say(error)
-			}
+			
+			game.schedule(8000, { game.removeVisual(moria) })	
 			
 		} else if (susana.tiene(collar)) {
 			susana.entregar(collar)
