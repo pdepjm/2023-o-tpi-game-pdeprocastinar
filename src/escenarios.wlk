@@ -62,6 +62,8 @@ class Visual {
 
     method image() = image
     method position() = position
+
+    
 }
 
 
@@ -87,7 +89,9 @@ object vecindad {
                         	]
                         	
     const partesNoPisables = new Visual(image = "vecindad/vecindad-no-pisable.png")
-                        	
+
+    // const pantallaFinal = new Escenario(puerta = null ,mapa = new Visual(image = "vecindad/pantalla-final.png"), puertaSalida = null, propietario = null, elemento = null)           
+
     const casaMessi = new Escenario(puerta = puertaMessi, mapa = new Visual(image = "vecindad/casa-map.png"), propietario = messi, elemento = botines)
 	const carcelMoria = new Escenario(puerta = puertaCarcel, mapa = new Visual(image = "vecindad/carcel_interior.png"), propietario = moria, elemento = martinFierro, zonasHabilitadas = [ 
                                                                                                                                                                                             new Zona(xIni = 0, xFin = 12, yIni = 2, yFin = 3), 
@@ -129,3 +133,9 @@ object vecindad {
         self.agregar(personajes)
     }
 }
+
+object pantallaFinal{
+    var mapa = "vecindad/pantalla-final.png"
+    method mapa = mapa
+}
+
