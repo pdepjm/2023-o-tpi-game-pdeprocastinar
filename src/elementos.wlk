@@ -32,3 +32,5 @@ const collar = new Elemento()
 const llaveEscudero = new Elemento()
 const torta = new Elemento()
 const veneno = new Elemento()
+
+// const pantallaFinal = new Elemento(position = game.at(0,0), image = "vecindad/pantalla-final.png")

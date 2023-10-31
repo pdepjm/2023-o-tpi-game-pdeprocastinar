@@ -90,9 +90,9 @@ object vecindad {
                         	
     const partesNoPisables = new Visual(image = "vecindad/vecindad-no-pisable.png")
 
-    // const pantallaFinal = new Escenario(puerta = null ,mapa = new Visual(image = "vecindad/pantalla-final.png"), puertaSalida = null, propietario = null, elemento = null)           
+    // const pantallaFinal = new Escenario( mapa = new Visual(image = "vecindad/pantalla-final.png"), puertaSalida = null, propietario = null, elemento = null)           
 
-    const casaMessi = new Escenario(puerta = puertaMessi, mapa = new Visual(image = "vecindad/casa-map.png"), propietario = messi, elemento = botines)
+    const casaMessi = new Escenario(puerta = puertaMessi, mapa = new Visual(image = "vecindad/canchita.png"), propietario = messi, elemento = botines)
 	const carcelMoria = new Escenario(puerta = puertaCarcel, mapa = new Visual(image = "vecindad/carcel_interior.png"), propietario = moria, elemento = martinFierro, zonasHabilitadas = [ 
                                                                                                                                                                                             new Zona(xIni = 0, xFin = 12, yIni = 2, yFin = 3), 
                                                                                                                                                                                             new Zona(xIni = 11, xFin = 12, yIni = 4, yFin = 9),
@@ -135,7 +135,8 @@ object vecindad {
 }
 
 object pantallaFinal{
-    var mapa = "vecindad/pantalla-final.png"
-    method mapa = mapa
+    var property position = game.origin()
+	
+	method image() = "vecindad/pantalla-final.png"
+	
 }
-

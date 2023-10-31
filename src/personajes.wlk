@@ -24,7 +24,7 @@ class Personaje {
     }
 }
 
-const messi = new Personaje(position = game.at(23 , 8), image = "messi.png", interaccion = hablarConMessi)
+const messi = new Personaje(position = game.center(), image = "messi.png", interaccion = hablarConMessi)
 const moria = new Personaje(position = game.at(5,5), image = "moria.png", interaccion = hablarConMoria)
 const moriaLlave = new Personaje(position = game.at(16,16), image = "moria_llave.png", interaccion = noHacerNada)
 const marley = new Personaje(position = game.at(20,3), image = "marley.png", interaccion = hablarConMarley)

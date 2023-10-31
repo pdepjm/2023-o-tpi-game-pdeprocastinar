@@ -5,13 +5,14 @@ import escenarios.*
 import elementos.*
 import personajes.*
 
+
+
 object hablarConMessi {
 	method interactuar(personaje) {
 		if(susana.tiene(balonDeOro)) {
 			susana.entregar(balonDeOro)
 			game.say(personaje, "Gracias Su! Tomá la copa :D")
 			susana.agregarA(susana.inventario(), copa)
-			game.schedule(3000, { game.clear() })
 			game.schedule(3000, {game.addVisual(pantallaFinal)})
 // method entregarSiTiene para hacer un or en el if y darle si se cumple alguna
 	} else if (susana.tiene(botines)) {

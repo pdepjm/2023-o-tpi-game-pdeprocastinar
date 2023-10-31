@@ -42,3 +42,16 @@ class Zona {
 	method quedaEnZona(pos) = pos.x() >= xIni &&  pos.x() <= xFin && pos.y() >= yIni && pos.y() <= yFin
 
 }
+
+object inicio {
+	var property position = game.at(0,0)
+	method image() = "vecindad/pantalla-inicial.png"
+	
+	method cargarPantallaInicio() {
+		game.addVisual(self)
+		keyboard.space().onPressDo { self.comenzar() }
+	}
+    method comenzar() {
+		game.removeVisual(self)
+		nivel.cargarMapa(vecindad)
+	}
