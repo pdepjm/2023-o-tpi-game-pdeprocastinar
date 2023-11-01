@@ -7,10 +7,14 @@ import elementos.*
 import interacciones.*
 
 program juego {
+	const sound = game.sound("sound.mp3")
+	sound.shouldLoop(true)
+
+	game.schedule(500, { sound.play()} )
+	
 	game.title("La vecindad")
 	game.width(30)
 	game.height(20)
-
 
 	game.boardGround("vecindad/vecindad-map.png")
 	inicio.cargarPantallaInicio()
