@@ -1,14 +1,16 @@
-# Nombre del juego (<- borrar y completar)
+# La vecindad
 
 ## Equipo de desarrollo
 
-- Alguien
-- Persona
-- etc.
+- Cecilia Denisse	Covalchuk
+- Franco Agustin Toledo
+- Victoria Sol Yedid
+- Nicolás Izraelski
+- Martina Roldán Pérez
 
 ## Capturas
+![pantalla-inicial](https://github.com/pdepjm/2023-o-tpi-game-pdeprocastinar/assets/129560490/21366102-fe72-45b9-91ab-bf45e8c8bcd9)
 
-(agregar)
 
 ## Reglas de Juego / Instrucciones
 
