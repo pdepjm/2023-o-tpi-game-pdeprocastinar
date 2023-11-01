@@ -7,7 +7,7 @@ import elementos.*
 import interacciones.*
 
 program juego {
-	game.title("La vida de SU")
+	game.title("La vecindad")
 	game.width(30)
 	game.height(20)
 
