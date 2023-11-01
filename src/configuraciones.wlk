@@ -55,3 +55,4 @@ object inicio {
 		game.removeVisual(self)
 		nivel.cargarMapa(vecindad)
 	}
+}
