@@ -8,18 +8,16 @@ import interacciones.*
 class Elemento {
     const position = game.at(0,0)
     const image = ""
-//    const interaccion = { self.interactuar() }
     
     method position() = position
     method image() = image
-//    method interaccion() = interaccion 
     
 	method mostrar() {
 		if(!susana.tieneOTuvo(self)) game.addVisual(self)
 	}
 	
 	method interactuar() {
-        susana.agregarA(susana.inventario(), self)
+        susana.inventario().add(self)
         game.removeVisual(self)
     }
 }
@@ -32,5 +30,3 @@ const collar = new Elemento()
 const llaveEscudero = new Elemento()
 const torta = new Elemento()
 const veneno = new Elemento()
-
-// const pantallaFinal = new Elemento(position = game.at(0,0), image = "vecindad/pantalla-final.png")

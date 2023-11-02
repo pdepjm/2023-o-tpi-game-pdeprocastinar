@@ -7,10 +7,10 @@ import elementos.*
 import interacciones.*
 
 program juego {
-	const sound = game.sound("sound.mp3")
+	const sound = game.sound("audio/sound.mp3")
 	sound.shouldLoop(true)
 
-	game.schedule(500, { sound.play()} )
+	game.schedule(500, {sound.play()} )
 	
 	game.title("La vecindad")
 	game.width(30)

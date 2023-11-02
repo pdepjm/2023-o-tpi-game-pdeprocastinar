@@ -5,234 +5,248 @@ import escenarios.*
 import elementos.*
 import personajes.*
 
-
-
+// Diálogos e interacciones
 object hablarConMessi {
-	method interactuar(personaje) {
+	method interactuar() {
 		if(susana.tiene(balonDeOro)) {
 			susana.entregar(balonDeOro)
-			game.say(personaje, "Gracias Su! Tomá la copa :D")
-			susana.agregarA(susana.inventario(), copa)
+			game.say(messi, "Gracias Su! Tomá la copa :D")
+			susana.inventario().add(copa)
 			game.schedule(3000, {game.addVisual(pantallaFinal)})
-// method entregarSiTiene para hacer un or en el if y darle si se cumple alguna
-	} else if (susana.tiene(botines)) {
-		susana.entregar(botines)
-		game.say(personaje, "Traeme mi balón de oro")
-		game.say(personaje, "Creo que lo tiene Moria")
-		
-	} else if (susana.tuvo(botines)) { 
-		game.say(personaje, "Traeme mi balón de oro")
-		game.say(personaje, "Creo que lo tiene Moria")
-		
-	} else {
-		game.say(personaje, "Hola Su! Ayudame con algo")
-		game.say(personaje, "pero antes buscame mis botines")
+			
+// 	method entregarSiTiene para hacer un or en el if y darle si se cumple alguna
+		} else if (susana.tiene(botines)) {
+			susana.entregar(botines)
+			game.say(messi, "Traeme mi balón de oro")
+			game.say(messi, "Creo que lo tiene Moria")
+			
+		} else if (susana.tuvo(botines)) { 
+			game.say(messi, "Traeme mi balón de oro")
+			game.say(messi, "Creo que lo tiene Moria")
+			
+		} else {
+			game.say(messi, "Hola Su! Ayudame con algo")
+			game.say(messi, "pero antes buscame mis botines")
 		}
 	}
 }
 
 object hablarConMoria {
-	method interactuar(personaje) {
+	method interactuar() {
 		if(susana.tiene(llaveEscudero)) {
 			susana.entregar(llaveEscudero)
-			vecindad.personajes().add(moriaLlave)
-			game.say(personaje, "Te mentí! Yo no tengo el balón de oro")
-		game.say(personaje, "Andá con la tortuga")
-		game.say(personaje, "va a saber donde está")
-		game.schedule(8000, { game.removeVisual(moria) })	
+			
+			game.say(moria, "Te mentí! Yo no tengo el balón de oro")
+			game.say(moria, "Andá con la tortuga")
+			game.say(moria, "va a saber donde está")
+			
+			game.schedule(8000, { game.removeVisual(moria) })
+			moria.image("moria_llave.png")
+			moria.position(game.at(16,16))
+			
+		} else if (susana.tuvo(llaveEscudero)) {
+			game.say(moria, "¿Todavía no encontraste a la tortuga?")
 		
-	} else if (susana.tiene(collar)) {
-		susana.entregar(collar)
-		game.say(personaje, "Consegui la llave ")
-		game.say(personaje, "de Silvina Escupidero")
-		game.say(personaje, "Y yo te voy a dar el balón de oro")
-		if(!susana.tuvo(veneno) && !susana.tiene(veneno)){
-		game.say(personaje, "Marley te puede ayudar")
-		}			
-	} else if (susana.tuvo(collar) && !susana.tiene(llaveEscudero) && !susana.tuvo(llaveEscudero)) {
-		game.say(personaje, "Conseguime la llave de la casa")
-		game.say(personaje, "de Silvina Escupidero")
-		game.say(personaje, "Y yo te voy a dar el balón de oro")
-		if(!susana.tuvo(veneno) && !susana.tiene(veneno)){
-		game.say(personaje, "Marley te puede ayudar")
-		}
-		
-	} else {
-		game.say(personaje, "Conseguime el collar de Mirtha")
-		game.say(personaje, "A ella le gustan los Martin Fierro")
+		} else if (susana.tiene(collar)) {
+			susana.entregar(collar)
+			game.say(moria, "Consegui la llave ")
+			game.say(moria, "de Silvina Escupidero")
+			game.say(moria, "Y yo te voy a dar el balón de oro")
+			
+			if(!susana.tuvo(veneno) && !susana.tiene(veneno)){
+				game.say(moria, "Marley te puede ayudar")
+			}		
+				
+		} else if (susana.tuvo(collar) && !susana.tiene(llaveEscudero) && !susana.tuvo(llaveEscudero)) {
+			game.say(moria, "Conseguime la llave de la casa")
+			game.say(moria, "de Silvina Escupidero")
+			game.say(moria, "Y yo te voy a dar el balón de oro")
+			
+			if(!susana.tuvo(veneno) && !susana.tiene(veneno)){
+				game.say(moria, "Marley te puede ayudar")
+			}
+			
+		} else {
+			game.say(moria, "Conseguime el collar de Mirtha")
+			game.say(moria, "A ella le gustan los Martin Fierro")
 		}	
 	}
-
 }
 
 object hablarConMirtha {
-	method interactuar(personaje){
+	method interactuar(){
 		if(susana.tiene(martinFierro)){
 			susana.entregar(martinFierro)
-			game.say(personaje,"Otro Martin Fierro para mi!")
-		game.say(personaje,"A cambio te doy mi collar")
-		susana.agregarA(susana.inventario(), collar)
-		
-	} else {
-		game.say(personaje,"Como te ven te tratan")
+			game.say(mirtha,"Otro Martin Fierro para mi!")
+			game.say(mirtha,"A cambio te doy mi collar")
+			susana.inventario().add(collar)
+			
+		} else {
+			game.say(mirtha,"Como te ven te tratan")
 		}
 	}
 }
 
-
 object hablarConEscudero {
-	method interactuar(personaje) {
+	method interactuar() {
 		if(susana.tiene(torta) && susana.tiene(veneno)) {
 			susana.entregar(torta)
 			susana.entregar(veneno)
-			//game.say(personaje,"Que rico Su! Muchas gracias")
-		susana.agregarA(susana.inventario(), llaveEscudero)
-		game.schedule(4000, { game.say(personaje,"Que rico Su! Muchas gracias") })
-//		game.schedule(6000, { transformarPersonaje.cambiarVisual(personaje, escuderoMuerta) })
-		game.schedule(6000, { personaje.image("escudero-dead.png") personaje.position(personaje.position().right(1)) personaje.interaccion(noHacerNada) })
-		
-		game.say(susana,"JA, ya tengo sus llaves para Moria")
+			susana.inventario().add(llaveEscudero)
+			game.schedule(4000, { game.say(escudero,"Que rico Su! Muchas gracias") })
+			game.schedule(6000, { 
+				escudero.image("escudero-dead.png")
+				escudero.position(escudero.position().right(1))
+			})
+			game.schedule(7000, { game.say(susana,"JA, ya tengo sus llaves para Moria") })
 	
-	} else if(susana.tuvo(collar)){
-		game.say(personaje,"Que ganas de comer una rica torta")
-	}
-	else {
-		game.say(personaje,"Amo a mi hermana")
-		game.say(personaje,"Amo bailar")
+		} else if(susana.tuvo(collar)){
+			game.say(escudero,"Que ganas de comer una rica torta")
+			
+		} else {
+			game.say(escudero,"Amo a mi hermana")
+			game.say(escudero,"Amo bailar")
 		}
 	}
 }
 
 object hablarConBetular {
-	method interactuar(personaje) {
-		if(susana.tuvo(collar) && personaje == betularOculto) {
-			transformarPersonaje.cambiarVisual(personaje, betular)
+	method interactuar() {
+		if(susana.tuvo(collar) && betular.image() == "betular-arbol.png") {
+			betular.image("betular.png")
+			betular.position(betular.position().right(1))
+			
 			game.say(betular,"Hola Su! Acá está la torta")
-		susana.agregarA(susana.inventario(), torta)
-				
-	} else if(susana.tuvo(collar)){
-		game.say(personaje,"Espero que te haya gustado la torta")
-	}
-	else {
-		game.say(personaje,"SHH! Estoy escondido")
+			susana.inventario().add(torta)
+					
+		} else if(susana.tuvo(collar)){
+			game.say(betular,"Espero que te haya gustado la torta")
+			
+		} else {
+			game.say(betular,"SHH! Estoy escondido")
 		}
 	}
 }
 
-
 object hablarConPimpinela {
-	method interactuar(personaje) {
+	method interactuar() {
 		if(susana.tuvo(collar)) {
-			//game.say(susana,"Chicos, se que estan fumigando")
-		//game.say(susana,"¿Me prestan veneno para mi casa?")
-		game.say(personaje,"Toma el veneno Su")
-		susana.agregarA(susana.inventario(), veneno)
-	} else if(susana.tuvo(veneno) || susana.tiene(veneno)){
-		game.say(personaje,"Quién es?")
-		//game.say(susana,"Soy yo!")		
-	}
-	else {
-		game.say(personaje,"Quién es?")
-		//game.say(susana,"Soy yo!")
+			game.say(susana,"Chicos, se que estan fumigando")
+			game.say(susana,"¿Me prestan veneno para mi casa?")
+			game.say(puertaPimpinela,"Toma el veneno Su")
+			susana.inventario().add(veneno)
+		} else {
+			game.say(puertaPimpinela,"Quién es?")
+			//game.say(susana,"Soy yo!")
 		}
 	}
 }	
 
 object hablarConTortuga {
-	method interactuar(personaje) {
+	method interactuar() {
 		if(susana.tuvo(llaveEscudero) && !susana.tiene(balonDeOro)) {
 			game.say(susana,"¿Dónde está el balón de oro?")
-		transformarPersonaje.cambiarVisual(personaje, mbappe)
-		game.schedule(4000, { game.say(mbappe,"Me descubriste! ") })
-		game.schedule(4000, { game.say(mbappe," Toma el balon") })
-		susana.agregarA(susana.inventario(), balonDeOro)	
+			
+			mbappe.image("mbappe.png")
+			mbappe.position(mbappe.position().left(1))
+			
+			game.schedule(4000, { game.say(mbappe,"Me descubriste!") })
+			game.schedule(4000, { game.say(mbappe,"Toma el balon") })
+			susana.inventario().add(balonDeOro)	
 		}
 	}
 }
 
 object hablarConMarley {
-	method interactuar(personaje) {
+	method interactuar() {
 		if(susana.tuvo(veneno) && susana.tuvo(torta)) {
-			game.say(personaje,"Que reyna sos Su! Moria te va")
-		game.say(personaje,"a indicar como seguir")
+			game.say(marley,"Que reyna sos Su! Moria te va")
+		game.say(marley,"a indicar como seguir")
 		
 	} 
 	else if(susana.tiene(veneno) && !susana.tiene(torta)){
-		game.say(personaje,"Betular hace tortas riquisimas, pero")
-		game.say(personaje,"por algun motivo siempre anda escondido")		
+		game.say(marley,"Betular hace tortas riquisimas, pero")
+		game.say(marley,"por algun motivo siempre anda escondido")		
 	}
 	else if(susana.tiene(torta) && !susana.tiene(veneno)){
-		game.say(personaje,"Me entere que andan fumigando ")
-		game.say(personaje," en lo de los pimpinela")
-		game.say(personaje,"ellos deben tener ")
-		game.say(personaje," veneno de sobra ")
+		game.say(marley,"Me entere que andan fumigando ")
+		game.say(marley," en lo de los pimpinela")
+		game.say(marley,"ellos deben tener ")
+		game.say(marley," veneno de sobra ")
 
 	}
 	else if(susana.tuvo(collar)){
-		game.say(personaje,"Hora de hacer la gran Yiya Murano:")
-		game.say(personaje,"torta y veneno! ")
-		game.say(personaje,"Dales ambos a Silvina ")
-		game.say(personaje,"y la casa es tuya")
+		game.say(marley,"Hora de hacer la gran Yiya Murano:")
+		game.say(marley,"torta y veneno! ")
+		game.say(marley,"Dales ambos a Silvina ")
+		game.say(marley,"y la casa es tuya")
 	}
 	else if(susana.tiene(collar)){
-		game.say(personaje,"Ame ese collar, daselo a Moria")
-		game.say(personaje,"antes de que trate de robartelo...")
+		game.say(marley,"Ame ese collar, daselo a Moria")
+		game.say(marley,"antes de que trate de robartelo...")
 	}
 	
-	else if(susana.tuvo(botines) || susana.tiene(botines)){
-		game.say(personaje,"Que flaquita estas Su! ")
-		game.say(personaje," Moria esta en la carcel")
-		game.say(personaje," puede ayudarte con tu objetivo")
+	else if(susana.tieneOTuvo(botines)){
+		game.say(marley,"Que flaquita estas Su! ")
+		game.say(marley," Moria esta en la carcel")
+		game.say(marley," puede ayudarte con tu objetivo")
 
 	}
 	else {
-		game.say(personaje,"Bienvenida Su! Busca a Messi para ")
-		game.say(personaje,"saber por donde arrancar")
-		game.say(personaje, "acercate si necesites ayuda")
+		game.say(marley,"Bienvenida Su! Busca a Messi para ")
+		game.say(marley,"saber por donde arrancar")
+		game.say(marley, "acercate si necesites ayuda")
 		}
 	}
-}	
+}
 
-
-object transformarPersonaje{
-	method cambiarVisual(personaje, nuevoVisual) {
-		vecindad.personajes().add(nuevoVisual)
-		vecindad.personajes().remove(personaje)
-		game.removeVisual(personaje)
-		game.addVisual(nuevoVisual)
+object mensajeTaylor {
+	const mensaje = "Shake it off, Shake it off"
+	
+	method interactuar() {
+		game.say(puertaTaylor, mensaje)
 	}
 }
 
-
-
-
-
-object noHacerNada {
-	method interactuar(_) {}
+object mensajeFort {
+	const mensaje = "MAIAMEEE"
+	
+	method interactuar() {
+		game.say(puertaFort, mensaje)
+	}
 }
 
-// --------------
-
-object irA {
-	method interactuar(lugar) {
-		nivel.cargarMapa(lugar)
+// Acceso a escenarios
+object accederVecindad {
+	method interactuar() {
+		susana.irALaPuerta()
+		nivel.cargarMapa(vecindad)
+		susana.mapaActual(vecindad)
 	}
+}
+
+object accederCasaMessi {
+    method interactuar() {
+    	susana.irALaPuerta()
+        nivel.cargarMapa(casaMessi)
+		susana.mapaActual(casaMessi)
+    }
 }
 
 object accederCarcel {
-    method interactuar(mapa) {
+    method interactuar() {
         if(susana.tuvo(botines)) {
-            nivel.cargarMapa(mapa)
-			susana.position(game.at(0,2)) 
+        	susana.irALaPuerta()
+            nivel.cargarMapa(carcelMoria)
+            susana.mapaActual(carcelMoria)
+            
         } else {
             game.say(susana, "Primero debo hablar con Messi")
         }
     }
 }
 
-class Dialogo {
-	var mensaje = ""
-	
-	method interactuar(puerta) {game.say(puerta, mensaje)}
-
+// -------------------------
+object noHacerNada {
+	method interactuar() {}
 }
