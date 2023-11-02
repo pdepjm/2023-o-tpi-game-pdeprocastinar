@@ -6,14 +6,14 @@ import elementos.*
 import interacciones.*
 
 class Personaje {
-	var position = game.at(0,0)
+	var property position = game.at(0,0)
 	
-	var image = ""
-	var interaccion = noHacerNada
+	var property image = ""
+	var property interaccion = noHacerNada
 	var interactuaCon = self
 	
-	method position() = position
-	method image() = image
+//	method position() = position
+//	method image() = image
 	
 	method interactuar() {
 		interaccion.interactuar(interactuaCon)

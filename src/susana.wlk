@@ -13,10 +13,10 @@ object susana {
 	method image() = "susana.png"
 
 	method inventario() = inventario
-	method elemEntregados() = elemEntregados
+//	method elemEntregados() = elemEntregados
 
-	method tiene(elemento) = self.inventario().contains(elemento)
-	method tuvo(elemento) = self.elemEntregados().contains(elemento)
+	method tiene(elemento) = inventario.contains(elemento)
+	method tuvo(elemento) = elemEntregados.contains(elemento)
 	
 	method tieneOTuvo(elemento) = self.tiene(elemento) || self.tuvo(elemento)
 	
@@ -34,6 +34,13 @@ object susana {
 		self.agregarA(elemEntregados, elemento)
 	}
 
+	
+//	method moverse(direccion) {
+//		const nuevaPosicion = direccion.siguiente(posicionActual())
+//		if(escenarioActual.estaLibre(nuevaPosicion)) {
+//			position = nuevaPosicion
+//		}
+//	}
 	
 
 	// Métodos de movimiento (optimizar lógica)

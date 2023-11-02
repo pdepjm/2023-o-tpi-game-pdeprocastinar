@@ -8,11 +8,11 @@ import interacciones.*
 class Elemento {
     const position = game.at(0,0)
     const image = ""
-    const interaccion = { self.interactuar() }
+//    const interaccion = { self.interactuar() }
     
     method position() = position
     method image() = image
-    method interaccion() = interaccion 
+//    method interaccion() = interaccion 
     
 	method mostrar() {
 		if(!susana.tieneOTuvo(self)) game.addVisual(self)

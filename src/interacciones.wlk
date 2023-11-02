@@ -88,7 +88,9 @@ object hablarConEscudero {
 			//game.say(personaje,"Que rico Su! Muchas gracias")
 		susana.agregarA(susana.inventario(), llaveEscudero)
 		game.schedule(4000, { game.say(personaje,"Que rico Su! Muchas gracias") })
-		game.schedule(6000, { transformarPersonaje.cambiarVisual(personaje, escuderoMuerta) })
+//		game.schedule(6000, { transformarPersonaje.cambiarVisual(personaje, escuderoMuerta) })
+		game.schedule(6000, { personaje.image("escudero-dead.png") personaje.position(personaje.position().right(1)) personaje.interaccion(noHacerNada) })
+		
 		game.say(susana,"JA, ya tengo sus llaves para Moria")
 	
 	} else if(susana.tuvo(collar)){
