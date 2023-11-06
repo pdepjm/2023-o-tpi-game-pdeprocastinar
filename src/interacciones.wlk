@@ -40,9 +40,10 @@ object hablarConMoria {
 			game.say(moria, "Andá con la tortuga")
 			game.say(moria, "va a saber donde está")
 			
-			game.schedule(8000, { game.removeVisual(moria) })
-			moria.image("moria_llave.png")
-			moria.position(game.at(16,16))
+			game.schedule(7000, { game.removeVisual(moria) })
+			game.schedule(7100, { moria.image("moria_llave.png") })
+			game.schedule(7100, { moria.position(game.at(16,16)) })
+			vecindad.personajes().add(moria)
 			
 		} else if (susana.tuvo(llaveEscudero)) {
 			game.say(moria, "¿Todavía no encontraste a la tortuga?")
@@ -93,12 +94,12 @@ object hablarConEscudero {
 			susana.entregar(torta)
 			susana.entregar(veneno)
 			susana.inventario().add(llaveEscudero)
-			game.schedule(4000, { game.say(escudero,"Que rico Su! Muchas gracias") })
-			game.schedule(6000, { 
+			game.schedule(2000, { game.say(escudero,"Que rico Su! Muchas gracias") })
+			game.schedule(4000, { 
 				escudero.image("escudero-dead.png")
 				escudero.position(escudero.position().right(1))
 			})
-			game.schedule(7000, { game.say(susana,"JA, ya tengo sus llaves para Moria") })
+			game.schedule(5000, { game.say(susana,"JA, ya tengo sus llaves para Moria") })
 	
 		} else if(susana.tuvo(collar)){
 			game.say(escudero,"Que ganas de comer una rica torta")

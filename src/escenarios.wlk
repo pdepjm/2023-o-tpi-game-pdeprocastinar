@@ -43,6 +43,7 @@ class Escenario {
 
     method sePuedeAcceder(pos) = zonasHabilitadas.any({ zona => zona.quedaEnZona(pos) }) && zonasProhibidas.all({ zona => !zona.quedaEnZona(pos) })
 
+	//Evaluar si necesitamos realmente este método
     method eliminarPropietario(){
         game.removeVisual(propietario)
     }
@@ -92,6 +93,8 @@ object vecindad {
 	
 	const puertasDisponibles = [puertaMessi, puertaCarcel, puertaTaylor, puertaFort, puertaPimpinela]
     const personajes = [mirtha, escudero, betular, mbappe, marley]
+    
+    method personajes() = personajes
     
 	method posSusana() = game.at(19,3)
    
