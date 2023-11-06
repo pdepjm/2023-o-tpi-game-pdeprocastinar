@@ -41,7 +41,7 @@ object hablarConMoria {
 			game.say(moria, "va a saber donde está")
 			
 			game.schedule(7000, { game.removeVisual(moria) })
-			game.schedule(7100, { moria.image("moria_llave.png") })
+			game.schedule(7100, { moria.image("personajes/moria_llave.png") })
 			game.schedule(7100, { moria.position(game.at(16,16)) })
 			vecindad.personajes().add(moria)
 			
@@ -96,7 +96,7 @@ object hablarConEscudero {
 			susana.inventario().add(llaveEscudero)
 			game.schedule(2000, { game.say(escudero,"Que rico Su! Muchas gracias") })
 			game.schedule(4000, { 
-				escudero.image("escudero-dead.png")
+				escudero.image("personajes/escudero-dead.png")
 				escudero.position(escudero.position().right(1))
 			})
 			game.schedule(5000, { game.say(susana,"JA, ya tengo sus llaves para Moria") })
@@ -113,8 +113,8 @@ object hablarConEscudero {
 
 object hablarConBetular {
 	method interactuar() {
-		if(susana.tuvo(collar) && betular.image() == "betular-arbol.png") {
-			betular.image("betular.png")
+		if(susana.tuvo(collar) && betular.image() == "personajes/betular-arbol.png") {
+			betular.image("personajes/betular.png")
 			betular.position(betular.position().right(1))
 			
 			game.say(betular,"Hola Su! Acá está la torta")
@@ -148,7 +148,7 @@ object hablarConTortuga {
 		if(susana.tuvo(llaveEscudero) && !susana.tiene(balonDeOro)) {
 			game.say(susana,"¿Dónde está el balón de oro?")
 			
-			mbappe.image("mbappe.png")
+			mbappe.image("personajes/mbappe.png")
 			mbappe.position(mbappe.position().left(1))
 			
 			game.schedule(4000, { game.say(mbappe,"Me descubriste!") })
@@ -196,7 +196,7 @@ object hablarConMarley {
 	else {
 		game.say(marley,"Bienvenida Su! Busca a Messi para ")
 		game.say(marley,"saber por donde arrancar")
-		game.say(marley, "acercate si necesites ayuda")
+		game.say(marley,"acercate si necesites ayuda")
 		}
 	}
 }
@@ -237,6 +237,7 @@ object accederCasaMessi {
 object accederCarcel {
     method interactuar() {
         if(susana.tuvo(botines)) {
+        	puertaCarcel.sonido("audio/abrir-puerta.ogg")
         	susana.irALaPuerta()
             nivel.cargarMapa(carcelMoria)
             susana.mapaActual(carcelMoria)

@@ -16,7 +16,7 @@ program juego {
 	game.width(30)
 	game.height(20)
 
-	game.boardGround("vecindad/vecindad-map.png")
+	game.boardGround("escenarios/vecindad-map.png")
 	inicio.cargarPantallaInicio()
 	game.start()
 }

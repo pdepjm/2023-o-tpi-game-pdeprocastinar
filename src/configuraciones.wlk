@@ -37,7 +37,7 @@ class Zona {
 
 object inicio {
 	method position() = game.at(0,0)
-	method image() = "vecindad/pantalla-inicial.png"
+	method image() = "pantalla-inicial.png"
 	
 	method cargarPantallaInicio() {
 		game.addVisual(self)
@@ -50,4 +50,4 @@ object inicio {
 	}
 }
 
-const pantallaFinal = new Visual(image = "vecindad/pantalla-final.png")
+const pantallaFinal = new Visual(image = "pantalla-final.png")

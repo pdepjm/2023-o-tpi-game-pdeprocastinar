@@ -8,6 +8,8 @@ import interacciones.*
 class Puerta {
 	var position = game.origin()
 	var interaccion = null
+	
+	var property sonido = "audio/puerta-cerrada.ogg"
 
 	method image() = "tile.png"
 	method position() = position
@@ -18,6 +20,7 @@ class Puerta {
     
     method interactuar() {
         interaccion.interactuar()
+        game.sound(sonido).play()
     }
 }
 
@@ -89,7 +92,7 @@ object vecindad {
                              new Zona(xIni = 28, xFin = 29, yIni = 2, yFin = 8)
                         	]
                         	
-    const partesNoPisables = new Visual(image = "vecindad/vecindad-no-pisable.png")
+    const partesNoPisables = new Visual(image = "escenarios/vecindad-no-pisable.png")
 	
 	const puertasDisponibles = [puertaMessi, puertaCarcel, puertaTaylor, puertaFort, puertaPimpinela]
     const personajes = [mirtha, escudero, betular, mbappe, marley]
@@ -115,8 +118,8 @@ object vecindad {
 }
 
 
-const casaMessi = new Escenario(puerta = puertaMessi, image = "vecindad/canchita.png", propietario = messi, elemento = botines)
-const carcelMoria = new Escenario(puerta = puertaCarcel, image = "vecindad/carcel_interior.png", propietario = moria, elemento = martinFierro, zonasHabilitadas = [ new Zona(xIni = 0, xFin = 12, yIni = 2, yFin = 3), 
+const casaMessi = new Escenario(puerta = puertaMessi, image = "escenarios/casa-messi-map.png", propietario = messi, elemento = botines)
+const carcelMoria = new Escenario(puerta = puertaCarcel, image = "escenarios/carcel-map.png", propietario = moria, elemento = martinFierro, zonasHabilitadas = [ new Zona(xIni = 0, xFin = 12, yIni = 2, yFin = 3), 
                                                                                                                                                                     new Zona(xIni = 11, xFin = 12, yIni = 4, yFin = 9),
                                                                                                                                                                     new Zona(xIni = 13, xFin = 18, yIni = 8, yFin = 9),
                                                                                                                                                                     new Zona(xIni = 19, xFin = 20, yIni = 2, yFin = 9),
@@ -127,7 +130,7 @@ const carcelMoria = new Escenario(puerta = puertaCarcel, image = "vecindad/carce
                                                                                                                                                                     new Zona(xIni = 26, xFin = 26, yIni = 4, yFin = 5)
                                                                                                                                                                   ])
                                                                                                                                                                                      
-const puertaMessi = new Puerta(position = game.at(19,7), interaccion = accederCasaMessi )
+const puertaMessi = new Puerta(position = game.at(19,7), interaccion = accederCasaMessi, sonido = "audio/abrir-puerta.ogg" )
 const puertaCarcel = new Puerta(position = game.at(26,18), interaccion = accederCarcel )
 const puertaTaylor = new Puerta(position = game.at(8,2), interaccion = mensajeTaylor)
 const puertaFort = new Puerta(position = game.at(25,3), interaccion = mensajeFort)

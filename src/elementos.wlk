@@ -22,8 +22,8 @@ class Elemento {
     }
 }
 
-const botines = new Elemento(position = game.at(25, 7), image = "botin.png")
-const martinFierro = new Elemento(position = game.at(26,5), image = "martinFierro.png" )
+const botines = new Elemento(position = game.at(25, 7), image = "elementos/botin.png")
+const martinFierro = new Elemento(position = game.at(26,5), image = "elementos/martinFierro.png" )
 const copa = new Elemento()
 const balonDeOro = new Elemento()
 const collar = new Elemento()

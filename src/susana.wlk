@@ -12,7 +12,7 @@ object susana {
 	const inventario = []
 	const elemEntregados = []
 	
-	method image() = "susana.png"
+	method image() = "personajes/susana.png"
 
 	method inventario() = inventario
 
