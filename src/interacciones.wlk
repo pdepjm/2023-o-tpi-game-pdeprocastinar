@@ -12,7 +12,7 @@ object hablarConMessi {
 			susana.entregar(balonDeOro)
 			game.say(messi, "Gracias Su!")
 			game.say(messi, "La copa del mundo es tuya")
-			susana.inventario().add(copa)
+			susana.recibirObjeto(copa)
 			game.schedule(3000, {
    				 game.addVisual(pantallaFinal)
     			 //game.sound("audio/fin-de-juego.mp3")
@@ -89,7 +89,7 @@ object hablarConMirtha {
 			game.say(mirtha,"Genial! Mi Martin Fierro número")
 			game.say(mirtha,"mil, en agradecimiento")
 			game.say(mirtha,"te doy mi collar")
-			susana.inventario().add(collar)
+			susana.recibirObjeto(collar)
 			
 		} else {
 			game.say(mirtha,"Como te ven te tratan")
@@ -104,7 +104,7 @@ object hablarConEscudero {
 		if(susana.tiene(torta) && susana.tiene(veneno)) {
 			susana.entregar(torta)
 			susana.entregar(veneno)
-			susana.inventario().add(llaveEscudero)
+			susana.recibirObjeto(llaveEscudero)
 			game.schedule(2000, { game.say(escudero,"Que rico! Muchas gracias") })
 			game.schedule(4000, { 
 				escudero.image("personajes/escudero-dead.png")
@@ -129,7 +129,7 @@ object hablarConBetular {
 			betular.position(betular.position().right(1))
 			
 			game.say(betular,"Hola Su! Acá está la torta")
-			susana.inventario().add(torta)
+			susana.recibirObjeto(torta)
 					
 		} else if(susana.tuvo(collar)){
 			game.say(betular,"Espero que te haya gustado la torta")
@@ -146,7 +146,7 @@ object hablarConPimpinela {
 			game.say(susana,"Chicos, se que estan fumigando")
 			game.say(susana,"¿Me prestan veneno para mi casa?")
 			game.schedule(4000, { game.say(puertaPimpinela,"Toma el veneno Su") })
-			susana.inventario().add(veneno)
+			susana.recibirObjeto(veneno)
 		} else {
 			game.say(puertaPimpinela,"Quién es?")
 		}
@@ -163,7 +163,7 @@ object hablarConTortuga {
 			
 			game.schedule(4000, { game.say(mbappe,"Me descubriste!") })
 			game.schedule(4000, { game.say(mbappe,"Toma el balon") })
-			susana.inventario().add(balonDeOro)	
+			susana.recibirObjeto(balonDeOro)
 		}
 	}
 }

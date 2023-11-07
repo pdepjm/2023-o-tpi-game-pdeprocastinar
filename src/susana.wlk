@@ -34,6 +34,12 @@ object susana {
 	method irALaPuerta() {
 		position = mapaActual.posSusana()
 	}
+
+	method recibirObjeto (objeto) {
+		self.inventario().add(objeto)
+		game.addVisual(objeto)
+		game.schedule(2000, { game.removeVisual(objeto) })
+	}
 }
 
 object arriba {
