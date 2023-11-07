@@ -10,18 +10,23 @@ object hablarConMessi {
 	method interactuar() {
 		if(susana.tiene(balonDeOro)) {
 			susana.entregar(balonDeOro)
-			game.say(messi, "Gracias Su! Tomá la copa :D")
+			game.say(messi, "Gracias Su!")
+			game.say(messi, "La copa del mundo es tuya")
 			susana.inventario().add(copa)
-			game.schedule(3000, {game.addVisual(pantallaFinal)})
+			game.schedule(3000, {
+   				 game.addVisual(pantallaFinal)
+    			 //game.sound("audio/fin-de-juego.mp3")
+    			 //hay que sacar el sonido de fondo que hay desde el principio
+})
 			
 // 	method entregarSiTiene para hacer un or en el if y darle si se cumple alguna
 		} else if (susana.tiene(botines)) {
 			susana.entregar(botines)
-			game.say(messi, "Traeme mi balón de oro")
+			game.say(messi, "Recuperame mi balón de oro")
 			game.say(messi, "Creo que lo tiene Moria")
 			
 		} else if (susana.tuvo(botines)) { 
-			game.say(messi, "Traeme mi balón de oro")
+			game.say(messi, "Recuperame mi balón de oro")
 			game.say(messi, "Creo que lo tiene Moria")
 			
 		} else {
@@ -38,7 +43,7 @@ object hablarConMoria {
 			
 			game.say(moria, "Te mentí! Yo no tengo el balón de oro")
 			game.say(moria, "Andá con la tortuga")
-			game.say(moria, "va a saber donde está")
+			game.say(moria, "y te vas a sorprender")
 			
 			game.schedule(7000, { game.removeVisual(moria) })
 			game.schedule(7100, { moria.image("personajes/moria_llave.png") })
@@ -50,26 +55,29 @@ object hablarConMoria {
 		
 		} else if (susana.tiene(collar)) {
 			susana.entregar(collar)
-			game.say(moria, "Consegui la llave ")
-			game.say(moria, "de Silvina Escupidero")
-			game.say(moria, "Y yo te voy a dar el balón de oro")
+			game.say(moria, "Gracias mi amor! Pero antes")
+			game.say(moria, "necesito una casa para vivir")
+			game.say(moria, "Quiero la de Silvina Escupidero")
 			
 			if(!susana.tuvo(veneno) && !susana.tiene(veneno)){
 				game.say(moria, "Marley te puede ayudar")
 			}		
 				
 		} else if (susana.tuvo(collar) && !susana.tiene(llaveEscudero) && !susana.tuvo(llaveEscudero)) {
-			game.say(moria, "Conseguime la llave de la casa")
-			game.say(moria, "de Silvina Escupidero")
-			game.say(moria, "Y yo te voy a dar el balón de oro")
+			game.say(moria, "Gracias mi amor! Pero antes")
+			game.say(moria, "necesito una casa para vivir")
+			game.say(moria, "Quiero la de Silvina Escupidero")
 			
 			if(!susana.tuvo(veneno) && !susana.tiene(veneno)){
 				game.say(moria, "Marley te puede ayudar")
 			}
 			
 		} else {
-			game.say(moria, "Conseguime el collar de Mirtha")
-			game.say(moria, "A ella le gustan los Martin Fierro")
+			game.say(moria, "Tenés que conseguirme un collar")
+			game.say(moria, "para reemplazar el que me")
+			game.say(moria, "robé. Alguien te puede dar uno:")
+			game.say(moria, "Aunque ya tenga muchos Martin Fierro,")
+			game.say(moria, "ella siempre quiere más")
 		}	
 	}
 }
@@ -78,12 +86,15 @@ object hablarConMirtha {
 	method interactuar(){
 		if(susana.tiene(martinFierro)){
 			susana.entregar(martinFierro)
-			game.say(mirtha,"Otro Martin Fierro para mi!")
-			game.say(mirtha,"A cambio te doy mi collar")
+			game.say(mirtha,"Genial! Mi Martin Fierro número")
+			game.say(mirtha,"mil, en agradecimiento")
+			game.say(mirtha,"te doy mi collar")
 			susana.inventario().add(collar)
 			
 		} else {
 			game.say(mirtha,"Como te ven te tratan")
+			game.say(mirtha,"Si te ven mal, te maltratan")
+			game.say(mirtha,"y si te ven bien, te contratan")
 		}
 	}
 }
@@ -94,12 +105,12 @@ object hablarConEscudero {
 			susana.entregar(torta)
 			susana.entregar(veneno)
 			susana.inventario().add(llaveEscudero)
-			game.schedule(2000, { game.say(escudero,"Que rico Su! Muchas gracias") })
+			game.schedule(2000, { game.say(escudero,"Que rico! Muchas gracias") })
 			game.schedule(4000, { 
 				escudero.image("personajes/escudero-dead.png")
 				escudero.position(escudero.position().right(1))
 			})
-			game.schedule(5000, { game.say(susana,"JA, ya tengo sus llaves para Moria") })
+			game.schedule(5000, { game.say(susana,"Por fin tengo las llaves") })
 	
 		} else if(susana.tuvo(collar)){
 			game.say(escudero,"Que ganas de comer una rica torta")
@@ -134,11 +145,10 @@ object hablarConPimpinela {
 		if(susana.tuvo(collar)) {
 			game.say(susana,"Chicos, se que estan fumigando")
 			game.say(susana,"¿Me prestan veneno para mi casa?")
-			game.say(puertaPimpinela,"Toma el veneno Su")
+			game.schedule(4000, { game.say(puertaPimpinela,"Toma el veneno Su") })
 			susana.inventario().add(veneno)
 		} else {
 			game.say(puertaPimpinela,"Quién es?")
-			//game.say(susana,"Soy yo!")
 		}
 	}
 }	
@@ -161,8 +171,9 @@ object hablarConTortuga {
 object hablarConMarley {
 	method interactuar() {
 		if(susana.tuvo(veneno) && susana.tuvo(torta)) {
-			game.say(marley,"Que reyna sos Su! Moria te va")
-		game.say(marley,"a indicar como seguir")
+			game.say(marley,"Conseguiste la llave?")
+			game.say(marley,"No te tenía tan hábil")
+			game.say(marley,"Llevasela a Moria")
 		
 	} 
 	else if(susana.tiene(veneno) && !susana.tiene(torta)){
@@ -179,24 +190,26 @@ object hablarConMarley {
 	else if(susana.tuvo(collar)){
 		game.say(marley,"Hora de hacer la gran Yiya Murano:")
 		game.say(marley,"torta y veneno! ")
-		game.say(marley,"Dales ambos a Silvina ")
+		game.say(marley,"Dale ambos a Silvina ")
 		game.say(marley,"y la casa es tuya")
 	}
 	else if(susana.tiene(collar)){
-		game.say(marley,"Ame ese collar, daselo a Moria")
-		game.say(marley,"antes de que trate de robartelo...")
+		game.say(marley,"Dale el collar a Moria")
+		game.say(marley,"capaz la sacan de la cárcel")
 	}
 	
 	else if(susana.tieneOTuvo(botines)){
-		game.say(marley,"Que flaquita estas Su! ")
-		game.say(marley," Moria esta en la carcel")
-		game.say(marley," puede ayudarte con tu objetivo")
+		game.say(marley,"No te acordás? Moria está")
+		game.say(marley," en la carcel. Se robó ")
+		game.say(marley," un collar en Paraguay!")
 
 	}
 	else {
-		game.say(marley,"Bienvenida Su! Busca a Messi para ")
-		game.say(marley,"saber por donde arrancar")
-		game.say(marley,"acercate si necesites ayuda")
+		game.say(marley,"Bienvenida Su! Me dijeron que")
+		game.say(marley,"tenés que conseguir la copa")
+		game.say(marley,"del mundo para tu programa.")
+		game.say(marley,"Buscalo a Messi!")
+		game.say(marley,"Preguntame si necesitás ayuda")
 		}
 	}
 }
