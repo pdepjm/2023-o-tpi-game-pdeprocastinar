@@ -132,6 +132,6 @@ const carcelMoria = new Escenario(puerta = puertaCarcel, image = "escenarios/car
                                                                                                                                                                                      
 const puertaMessi = new Puerta(position = game.at(19,7), interaccion = accederCasaMessi, sonido = "audio/abrir-puerta.ogg" )
 const puertaCarcel = new Puerta(position = game.at(26,18), interaccion = accederCarcel )
-const puertaTaylor = new Puerta(position = game.at(8,2), interaccion = mensajeTaylor)
-const puertaFort = new Puerta(position = game.at(25,3), interaccion = mensajeFort)
-const puertaPimpinela = new Puerta(position = game.at(6,11), interaccion = hablarConPimpinela)
+const puertaTaylor = new Puerta(position = game.at(8,2), interaccion = mensajeTaylor, sonido = "audio/Taylor.mp3")
+const puertaFort = new Puerta(position = game.at(25,3), interaccion = mensajeFort, sonido = "audio/Ricardo_Fort_Miami_mp3cut.net.mp3")
+const puertaPimpinela = new Puerta(position = game.at(6,11), interaccion = hablarConPimpinela, sonido = "audio/Pimpinela.mp3")
