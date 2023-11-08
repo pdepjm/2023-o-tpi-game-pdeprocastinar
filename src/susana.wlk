@@ -33,6 +33,11 @@ object susana {
 		self.mostrarElemento(elemento)
 	}
 
+	method recibir(objeto) {
+		inventario.add(objeto)
+		self.mostrarElemento(objeto)
+	}
+	
 	method moverse(direccion) {
 		if(mapaActual.sePuedeAcceder(direccion.ir(position))) {
 			self.position(direccion.ir(position))
@@ -43,10 +48,6 @@ object susana {
 		position = mapaActual.posInicialSusana()
 	}
 
-	method recibirObjeto (objeto) {
-		inventario.add(objeto)
-		self.mostrarElemento(objeto)
-	}
 }
 
 object arriba {

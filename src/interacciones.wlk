@@ -12,11 +12,10 @@ object hablarConMessi {
 			susana.entregar(balonDeOro)
 			game.say(messi, "¡Gracias Su!")
 			game.say(messi, "La copa del mundo es tuya")
-			susana.recibirObjeto(copa)
+			susana.recibir(copa)
 			game.schedule(3000, {
-   				 game.addVisual(pantallaFinal)
-    			 //game.sound("audio/fin-de-juego.mp3")
-    			 //hay que sacar el sonido de fondo que hay desde el principio
+				game.addVisual(pantallaFinal)
+				musica.playFinal()
 })
 			
 		} else if (susana.tiene(botines)) {
@@ -92,7 +91,7 @@ object hablarConMirtha {
 			game.say(mirtha,"Mi Martin Fierro número mil,")
 			game.say(mirtha,"tomá mi collar")
 			game.say(mirtha,"en agradecimiento")
-			susana.recibirObjeto(collar)
+			susana.recibir(collar)
 			
 		} else {
 			game.say(mirtha,"Como te ven te tratan")
@@ -107,7 +106,7 @@ object hablarConEscudero {
 		if(susana.tiene(torta) && susana.tiene(veneno)) {
 			susana.entregar(torta)
 			susana.entregar(veneno)
-			susana.recibirObjeto(llaveEscudero)
+			susana.recibir(llaveEscudero)
 			game.schedule(2000, { game.say(escudero,"¡Que rico! Muchas gracias") })
 			game.schedule(4000, { 
 				escudero.image("personajes/escudero-dead.png")
@@ -127,7 +126,7 @@ object hablarConBetular {
 			betular.image("personajes/betular.png")
 			betular.position(betular.position().right(1))
 			game.say(betular,"Hola Su! Acá está la torta")
-			susana.recibirObjeto(torta)		
+			susana.recibir(torta)		
 		} else if(susana.tuvo(collar)){
 			game.say(betular,"Espero que te haya gustado la torta")
 		} else {
@@ -142,7 +141,7 @@ object hablarConPimpinela {
 			game.say(susana,"Chicos, se que estan fumigando")
 			game.say(susana,"¿Me prestan veneno para mi casa?")
 			game.schedule(4000, { game.say(puertaPimpinela,"Tomá el veneno Su") })
-			susana.recibirObjeto(veneno)
+			susana.recibir(veneno)
 		} else {
 			game.say(puertaPimpinela,"¿Quién es?")
 		}
@@ -159,7 +158,7 @@ object hablarConTortuga {
 			
 			game.schedule(4000, { game.say(mbappe,"¡Me descubriste!") })
 			game.schedule(4000, { game.say(mbappe,"Tomá el balon") })
-			susana.recibirObjeto(balonDeOro)
+			susana.recibir(balonDeOro)
 		}
 	}
 }
