@@ -26,7 +26,9 @@ class Puerta {
 
 class Escenario {
 	var puerta = null
-	var puertaSalida = new Puerta(position = game.at(27,2), interaccion = accederVecindad )
+	
+	var salida = game.origin()
+	var puertaSalida = new Puerta(position = salida, interaccion = accederVecindad )
 	
     var image = ""    
     var elemento = null
@@ -35,7 +37,8 @@ class Escenario {
     const zonasHabilitadas = [new Zona(xIni = 0, xFin = 29, yIni = 0, yFin = 19)]
     const zonasProhibidas = [new Zona(xIni = 0, xFin = 0, yIni = 0, yFin = 0)]
 
-	method posSusana() = puerta.position().down(1)
+	// Posicion que toma Susana al momento de volver a la vecindad
+	method posInicialSusana() = puerta.position().down(1)
 
 	method position() = game.origin()
 	method image() = image
@@ -98,7 +101,7 @@ object vecindad {
     
     method personajes() = personajes
     
-	method posSusana() = game.at(19,3)
+	method posInicialSusana() = game.at(19,3)
     
     method sePuedeAcceder(pos) = zonasHabilitadas.any({ zona => zona.quedaEnZona(pos) }) && zonasProhibidas.all({ zona => !zona.quedaEnZona(pos) })
     
@@ -117,18 +120,18 @@ object vecindad {
 }
 
 
-const casaMessi = new Escenario(puerta = puertaMessi, image = "escenarios/casa-messi-map.png", propietario = messi, elemento = botines, zonasHabilitadas = [ new Zona(xIni = 8, xFin = 11, yIni = 12, yFin = 15), 
-                                                                                                                                                                new Zona(xIni = 8, xFin = 10, yIni = 7, yFin = 13),
-                                                                                                                                                                new Zona(xIni = 7, xFin = 7, yIni = 9, yFin = 11),
-                                                                                                                                                                new Zona(xIni = 11, xFin = 18, yIni = 7, yFin = 10),
+const casaMessi = new Escenario(puerta = puertaMessi, salida = game.at(16,4), image = "escenarios/casa-messi-map.png", propietario = messi, elemento = botines, zonasHabilitadas = [ new Zona(xIni = 8, xFin = 11, yIni = 14, yFin = 15), 
+                                                                                                                                                                new Zona(xIni = 8, xFin = 10, yIni = 7, yFin = 13), 
+                                                                                                                                                                new Zona(xIni = 7, xFin = 7, yIni = 9, yFin = 11), 
+                                                                                                                                                                new Zona(xIni = 11, xFin = 18, yIni = 7, yFin = 10), 
                                                                                                                                                                 new Zona(xIni = 10, xFin = 20, yIni = 6, yFin = 6), 
                                                                                                                                                                 new Zona(xIni = 18, xFin = 22, yIni = 11, yFin = 13), 
-                                                                                                                                                                new Zona(xIni = 20, xFin = 29, yIni = 3, yFin = 4),
-                                                                                                                                                                new Zona(xIni = 16, xFin = 16, yIni = 4, yFin = 5),
+                                                                                                                                                                new Zona(xIni = 19, xFin = 22, yIni = 8, yFin = 9), 
+                                                                                                                                                                new Zona(xIni = 16, xFin = 16, yIni = 4, yFin = 5), 
                                                                                                                                                                 new Zona(xIni = 23, xFin = 23, yIni = 8, yFin = 13)
                                                                                                                                                             ])
 
-const carcelMoria = new Escenario(puerta = puertaCarcel, image = "escenarios/carcel-map.png", propietario = moria, elemento = martinFierro, zonasHabilitadas = [ new Zona(xIni = 0, xFin = 12, yIni = 2, yFin = 3), 
+const carcelMoria = new Escenario(puerta = puertaCarcel, salida = game.at(16,10), image = "escenarios/carcel-map.png", propietario = moria, elemento = martinFierro, zonasHabilitadas = [ new Zona(xIni = 0, xFin = 12, yIni = 2, yFin = 3), 
                                                                                                                                                                 new Zona(xIni = 11, xFin = 12, yIni = 4, yFin = 9),
                                                                                                                                                                 new Zona(xIni = 13, xFin = 18, yIni = 8, yFin = 9),
                                                                                                                                                                 new Zona(xIni = 19, xFin = 20, yIni = 2, yFin = 9),
@@ -136,6 +139,7 @@ const carcelMoria = new Escenario(puerta = puertaCarcel, image = "escenarios/car
                                                                                                                                                                 new Zona(xIni = 20, xFin = 29, yIni = 2, yFin = 3), 
                                                                                                                                                                 new Zona(xIni = 20, xFin = 29, yIni = 2, yFin = 3),
                                                                                                                                                                 new Zona(xIni = 5 , xFin = 5, yIni = 4, yFin = 5),
+                                                                                                                                                                new Zona(xIni = 16 , xFin = 16, yIni = 10, yFin = 10),
                                                                                                                                                                 new Zona(xIni = 26, xFin = 26, yIni = 4, yFin = 5)
                                                                                                                                                             ])
 
@@ -143,5 +147,5 @@ const carcelMoria = new Escenario(puerta = puertaCarcel, image = "escenarios/car
 const puertaMessi = new Puerta(position = game.at(19,7), interaccion = accederCasaMessi, sonido = "audio/abrir-puerta.ogg" )
 const puertaCarcel = new Puerta(position = game.at(26,18), interaccion = accederCarcel)
 const puertaTaylor = new Puerta(position = game.at(8,2), interaccion = mensajeTaylor, sonido = "audio/Taylor.mp3")
-const puertaFort = new Puerta(position = game.at(25,3), interaccion = mensajeFort, sonido = "audio/Ricardo_Fort_Miami_mp3cut.net.mp3")
+const puertaFort = new Puerta(position = game.at(25,3), interaccion = mensajeFort, sonido = "audio/Fort.mp3")
 const puertaPimpinela = new Puerta(position = game.at(6,11), interaccion = hablarConPimpinela, sonido = "audio/Pimpinela.mp3")

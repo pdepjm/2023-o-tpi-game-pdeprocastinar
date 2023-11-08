@@ -26,6 +26,29 @@ object nivel {
     }
 }
 
+object musica {
+	const intro = game.sound("audio/hola-susana.mp3")
+	const fondo = game.sound("audio/sound.mp3")
+	const final = game.sound("audio/detras-de-todo.mp3")
+	
+	method playIntro() {
+		game.schedule(500, {intro.play()} )
+		intro.shouldLoop(true)
+	}
+	
+	method playMusicaFondo() {
+		intro.stop()
+		fondo.play()
+		fondo.shouldLoop(true)
+	}
+	
+	method playFinal() {
+		fondo.stop()
+		final.play()
+		final.shouldLoop(true)
+	}
+}
+
 class Zona {
 	var xIni
 	var xFin	
@@ -47,6 +70,7 @@ object inicio {
     method comenzar() {
 		game.removeVisual(self)
 		nivel.cargarMapa(vecindad)
+		musica.playMusicaFondo()
 	}
 }
 

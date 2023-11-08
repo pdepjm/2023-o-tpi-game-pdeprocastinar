@@ -21,11 +21,12 @@ object susana {
 	method tieneOTuvo(elemento) = self.tiene(elemento) || self.tuvo(elemento)
 
 
-	method mostrarElemento (elemento) {
-		elemento.position(self.position().right(1))
+	method mostrarElemento(elemento) {
+		elemento.position(position.right(1))
 		game.addVisual(elemento)
 		game.schedule(1000, { game.removeVisual(elemento) })
 	}
+	
 	method entregar(elemento) {
 		inventario.remove(elemento)
 		elemEntregados.add(elemento)
@@ -39,11 +40,11 @@ object susana {
 	}
 	
 	method irALaPuerta() {
-		position = mapaActual.posSusana()
+		position = mapaActual.posInicialSusana()
 	}
 
 	method recibirObjeto (objeto) {
-		self.inventario().add(objeto)
+		inventario.add(objeto)
 		self.mostrarElemento(objeto)
 	}
 }
