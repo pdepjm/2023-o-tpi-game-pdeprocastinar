@@ -6,7 +6,7 @@ import personajes.*
 import interacciones.*
 
 class Elemento {
-    const position = game.at(0,0)
+    var property position = game.at(0,0)
     const image = ""
     
     method position() = position
@@ -22,7 +22,7 @@ class Elemento {
     }
 }
 
-const botines = new Elemento(position = game.at(25, 7), image = "elementos/botin.png")
+const botines = new Elemento(position = game.at(8, 12), image = "elementos/botin.png")
 const martinFierro = new Elemento(position = game.at(26,5), image = "elementos/martinFierro.png" )
 const copa = new Elemento(position = game.center(), image = "elementos/copa.png" )
 const balonDeOro = new Elemento(position = game.center(), image = "elementos/balon.png" )

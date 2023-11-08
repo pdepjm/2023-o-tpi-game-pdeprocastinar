@@ -72,7 +72,6 @@ class Visual {
 }
 
 object vecindad {
-	
     const zonasHabilitadas = [new Zona(xIni = 0, xFin = 29, yIni = 0, yFin = 19)]
     const zonasProhibidas = [new Zona(xIni = 6, xFin = 7, yIni = 12, yFin = 13), 
 	                         new Zona(xIni = 7, xFin = 7, yIni = 2, yFin = 3), 
@@ -100,7 +99,7 @@ object vecindad {
     method personajes() = personajes
     
 	method posSusana() = game.at(19,3)
-   
+    
     method sePuedeAcceder(pos) = zonasHabilitadas.any({ zona => zona.quedaEnZona(pos) }) && zonasProhibidas.all({ zona => !zona.quedaEnZona(pos) })
     
     method agregarNoPisables() {
@@ -118,20 +117,31 @@ object vecindad {
 }
 
 
-const casaMessi = new Escenario(puerta = puertaMessi, image = "escenarios/casa-messi-map.png", propietario = messi, elemento = botines)
+const casaMessi = new Escenario(puerta = puertaMessi, image = "escenarios/casa-messi-map.png", propietario = messi, elemento = botines, zonasHabilitadas = [ new Zona(xIni = 8, xFin = 11, yIni = 12, yFin = 15), 
+                                                                                                                                                                new Zona(xIni = 8, xFin = 10, yIni = 7, yFin = 13),
+                                                                                                                                                                new Zona(xIni = 7, xFin = 7, yIni = 9, yFin = 11),
+                                                                                                                                                                new Zona(xIni = 11, xFin = 18, yIni = 7, yFin = 10),
+                                                                                                                                                                new Zona(xIni = 10, xFin = 20, yIni = 6, yFin = 6), 
+                                                                                                                                                                new Zona(xIni = 18, xFin = 22, yIni = 11, yFin = 13), 
+                                                                                                                                                                new Zona(xIni = 20, xFin = 29, yIni = 3, yFin = 4),
+                                                                                                                                                                new Zona(xIni = 16, xFin = 16, yIni = 4, yFin = 5),
+                                                                                                                                                                new Zona(xIni = 23, xFin = 23, yIni = 8, yFin = 13)
+                                                                                                                                                            ])
+
 const carcelMoria = new Escenario(puerta = puertaCarcel, image = "escenarios/carcel-map.png", propietario = moria, elemento = martinFierro, zonasHabilitadas = [ new Zona(xIni = 0, xFin = 12, yIni = 2, yFin = 3), 
-                                                                                                                                                                    new Zona(xIni = 11, xFin = 12, yIni = 4, yFin = 9),
-                                                                                                                                                                    new Zona(xIni = 13, xFin = 18, yIni = 8, yFin = 9),
-                                                                                                                                                                    new Zona(xIni = 19, xFin = 20, yIni = 2, yFin = 9),
-                                                                                                                                                                    new Zona(xIni = 20, xFin = 29, yIni = 2, yFin = 3), 
-                                                                                                                                                                    new Zona(xIni = 20, xFin = 29, yIni = 2, yFin = 3), 
-                                                                                                                                                                    new Zona(xIni = 20, xFin = 29, yIni = 2, yFin = 3),
-                                                                                                                                                                    new Zona(xIni = 5 , xFin = 5, yIni = 4, yFin = 5),
-                                                                                                                                                                    new Zona(xIni = 26, xFin = 26, yIni = 4, yFin = 5)
-                                                                                                                                                                  ])
-                                                                                                                                                                                     
+                                                                                                                                                                new Zona(xIni = 11, xFin = 12, yIni = 4, yFin = 9),
+                                                                                                                                                                new Zona(xIni = 13, xFin = 18, yIni = 8, yFin = 9),
+                                                                                                                                                                new Zona(xIni = 19, xFin = 20, yIni = 2, yFin = 9),
+                                                                                                                                                                new Zona(xIni = 20, xFin = 29, yIni = 2, yFin = 3), 
+                                                                                                                                                                new Zona(xIni = 20, xFin = 29, yIni = 2, yFin = 3), 
+                                                                                                                                                                new Zona(xIni = 20, xFin = 29, yIni = 2, yFin = 3),
+                                                                                                                                                                new Zona(xIni = 5 , xFin = 5, yIni = 4, yFin = 5),
+                                                                                                                                                                new Zona(xIni = 26, xFin = 26, yIni = 4, yFin = 5)
+                                                                                                                                                            ])
+
+// puertas de entrada                                                                                                                                                                                                                                                                                                                                                         
 const puertaMessi = new Puerta(position = game.at(19,7), interaccion = accederCasaMessi, sonido = "audio/abrir-puerta.ogg" )
-const puertaCarcel = new Puerta(position = game.at(26,18), interaccion = accederCarcel )
+const puertaCarcel = new Puerta(position = game.at(26,18), interaccion = accederCarcel)
 const puertaTaylor = new Puerta(position = game.at(8,2), interaccion = mensajeTaylor, sonido = "audio/Taylor.mp3")
 const puertaFort = new Puerta(position = game.at(25,3), interaccion = mensajeFort, sonido = "audio/Ricardo_Fort_Miami_mp3cut.net.mp3")
 const puertaPimpinela = new Puerta(position = game.at(6,11), interaccion = hablarConPimpinela, sonido = "audio/Pimpinela.mp3")

@@ -112,13 +112,9 @@ object hablarConEscudero {
 			})
 			game.schedule(5000, { game.say(susana,"Por fin tengo las llaves") })
 	
-		} else if(susana.tuvo(collar)){
-			game.say(escudero,"Que ganas de comer una rica torta")
-			
-		} else {
-			game.say(escudero,"Amo a mi hermana")
-			game.say(escudero,"Amo bailar")
-		}
+		} else if(susana.tuvo(collar) && !escudero.image("personajes/escudero-dead.png") ){
+			game.say(escudero,"Que ganas de comer una rica torta")	
+		} 
 	}
 }
 
@@ -127,13 +123,10 @@ object hablarConBetular {
 		if(susana.tuvo(collar) && betular.image() == "personajes/betular-arbol.png") {
 			betular.image("personajes/betular.png")
 			betular.position(betular.position().right(1))
-			
 			game.say(betular,"Hola Su! Acá está la torta")
-			susana.recibirObjeto(torta)
-					
+			susana.recibirObjeto(torta)		
 		} else if(susana.tuvo(collar)){
 			game.say(betular,"Espero que te haya gustado la torta")
-			
 		} else {
 			game.say(betular,"SHH! Estoy escondido")
 		}
@@ -241,7 +234,7 @@ object accederVecindad {
 
 object accederCasaMessi {
     method interactuar() {
-    	susana.irALaPuerta()
+		susana.position(game.at(16,5))
         nivel.cargarMapa(casaMessi)
 		susana.mapaActual(casaMessi)
     }

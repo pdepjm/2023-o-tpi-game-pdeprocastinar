@@ -20,9 +20,16 @@ object susana {
 	method tuvo(elemento) = elemEntregados.contains(elemento)
 	method tieneOTuvo(elemento) = self.tiene(elemento) || self.tuvo(elemento)
 
+
+	method mostrarElemento (elemento) {
+		elemento.position(self.position().right(1))
+		game.addVisual(elemento)
+		game.schedule(1000, { game.removeVisual(elemento) })
+	}
 	method entregar(elemento) {
 		inventario.remove(elemento)
 		elemEntregados.add(elemento)
+		self.mostrarElemento(elemento)
 	}
 
 	method moverse(direccion) {
@@ -37,8 +44,7 @@ object susana {
 
 	method recibirObjeto (objeto) {
 		self.inventario().add(objeto)
-		game.addVisual(objeto)
-		game.schedule(2000, { game.removeVisual(objeto) })
+		self.mostrarElemento(objeto)
 	}
 }
 
