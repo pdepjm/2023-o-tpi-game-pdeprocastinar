@@ -1,8 +1,19 @@
 import wollok.game.*
-import pepita.*
+import susana.*
+import configuraciones.*
+import escenarios.*
+import personajes.*
+import elementos.*
+import interacciones.*
 
 program juego {
-	game.title("Juego Base")
-	game.addVisual(pepita)
+	musica.playIntro()
+	
+	game.title("La vecindad")
+	game.width(30)
+	game.height(20)
+
+	game.boardGround("escenarios/vecindad-map.png")
+	inicio.cargarPantallaInicio()
 	game.start()
 }
