@@ -6,7 +6,7 @@ import personajes.*
 import interacciones.*
 
 class Elemento {
-    var property position = game.at(0,0)
+    var property position = susana.position().right(1)
     const image = ""
 
     method image() = image
@@ -16,16 +16,18 @@ class Elemento {
 	}
 	
 	method interactuar() {
-        susana.inventario().add(self)
-        game.removeVisual(self)
+		if(!susana.tiene(self)) {
+	        susana.inventario().add(self)
+	        game.removeVisual(self)
+	    }
     }
 }
 
-const botines = new Elemento(position = game.at(8, 13), image = "elementos/botin.png")
+const botines = new Elemento(position = game.at(8,13), image = "elementos/botin.png" )
 const martinFierro = new Elemento(position = game.at(26,5), image = "elementos/martinFierro.png" )
-const copa = new Elemento(position = game.center(), image = "elementos/copa.png" )
-const balonDeOro = new Elemento(position = game.center(), image = "elementos/balon.png" )
-const collar = new Elemento(position = game.center(), image = "elementos/collar.png" )
-const llaveEscudero = new Elemento(position = game.center(), image = "elementos/llave.png" )
-const torta = new Elemento(position = game.center(), image = "elementos/torta.png" )
-const veneno =  new Elemento(position = game.center(), image = "elementos/veneno.png" )
+const copa = new Elemento(image = "elementos/copa.png" )
+const balonDeOro = new Elemento(image = "elementos/balon.png" )
+const collar = new Elemento(image = "elementos/collar.png" )
+const llaveEscudero = new Elemento(image = "elementos/llave.png" )
+const torta = new Elemento(image = "elementos/torta.png" )
+const veneno =  new Elemento(image = "elementos/veneno.png" )

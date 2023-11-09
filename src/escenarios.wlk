@@ -7,7 +7,7 @@ import interacciones.*
 
 class Puerta {
 	var position = game.origin()
-	var interaccion = null
+	var interaccion = noHacerNada
 	
 	var property sonido = "audio/puerta-cerrada.ogg"
 
@@ -48,11 +48,6 @@ class Escenario {
     method puerta() = puerta
 
     method sePuedeAcceder(pos) = zonasHabilitadas.any({ zona => zona.quedaEnZona(pos) }) && zonasProhibidas.all({ zona => !zona.quedaEnZona(pos) })
-
-	//Evaluar si necesitamos realmente este método
-    method eliminarPropietario(){
-        game.removeVisual(propietario)
-    }
     
     method generar() {
         game.addVisual(self)
@@ -96,8 +91,8 @@ object vecindad {
                         	
     const partesNoPisables = new Visual(image = "escenarios/vecindad-no-pisable.png")
 	
-	const puertasDisponibles = [puertaMessi, puertaCarcel, puertaTaylor, puertaFort, puertaPimpinela]
-    const personajes = [mirtha, escudero, betular, mbappe, marley]
+	const puertasDisponibles = [puertaMessi, puertaCarcel, puertaTaylor, puertaFort, puertaPimpinela, puertaEscudero]
+    const personajes = [mirtha, escudero, betular, mbappe, marley, tortugaFalsaUno, tortugaFalsaDos, tortugaFalsaTres]
     
     method personajes() = personajes
     
@@ -149,3 +144,4 @@ const puertaCarcel = new Puerta(position = game.at(26,18), interaccion = acceder
 const puertaTaylor = new Puerta(position = game.at(8,2), interaccion = mensajeTaylor, sonido = "audio/Taylor.mp3")
 const puertaFort = new Puerta(position = game.at(25,3), interaccion = mensajeFort, sonido = "audio/Fort.mp3")
 const puertaPimpinela = new Puerta(position = game.at(6,11), interaccion = hablarConPimpinela, sonido = "audio/Pimpinela.mp3")
+const puertaEscudero = new Puerta(position = game.at(15,17))
